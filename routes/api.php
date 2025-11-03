@@ -65,8 +65,16 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/get_saldo', [WalletController::class, 'GetBalance']);
     Route::post('/upload_deposit', [WalletController::class, 'uploadBuktiDeposit']);
-    
+    Route::post('/get_transaction_history', [WalletController::class, 'GetTransactionHistory']);
+    Route::get('/get_top_up_methods', [WalletController::class, 'getTopUpMethods']);
+    Route::post('/create_top_up_request', [WalletController::class, 'createTopUpRequest']);
+    Route::post('/upload_top_up_proof', [WalletController::class, 'uploadTopUpProof']);
+
     Route::post('/cek_komisi_rebahan/{id_penjualan}', [Controller::class, 'cekKomisiRebahanReal']);
+
+    Route::get('/get_bank_list', [WalletController::class, 'getBankList']);
+
+    Route::post('/create_withdraw_request', [WalletController::class, 'createWithdrawRequest']);
 });
 
 
@@ -74,13 +82,51 @@ Route::prefix('kurir')->group(function () {
     Route::post('/login', [LoginController::class, 'kurirLoginOtp']);
     Route::post('/verifikasi_otp', [LoginController::class, 'kurirVerifOtp']);
 
+    Route::prefix('register')->group(function () {
+        Route::post('/cek-no-hp', [KurirController::class, 'cekNoHp']);
+        Route::get('/get-provinsi', [KurirController::class, 'getProvinsi']);
+        Route::post('/get-kota', [KurirController::class, 'getKota']);
+        Route::post('/get-kecamatan', [KurirController::class, 'getKecamatan']);
+        Route::post('/send-otp', [KurirController::class, 'kirimOtpRegister']);
+        Route::post('/verify-otp', [KurirController::class, 'submitDataRegister']);
+        Route::post('/cek-status-sopir', [KurirController::class, 'cekStatusSopir']);
+        Route::post('/update-kelengkapan-data', [KurirController::class, 'updateKelengkapanData']);
+    });
+
     Route::prefix('v1')->group(function () {
         Route::get('/test', [KurirController::class, 'test']);
         Route::get('/hitungJarak/{titik_jemput}/{titik_tujuan}/{service}', [KurirController::class, 'getPrice']);
         Route::post('/orderKurir', [KurirController::class, 'orderKurir']);
+        Route::post('/getBalance', [KurirController::class, 'getBalance']);
+        Route::post('/orders/daily', [KurirController::class, 'getOrdersDaily']);
+        Route::post('/orders/monthly', [KurirController::class, 'getOrdersMonthly']);
+
+        Route::post('/orders/jenis/daily', [KurirController::class, 'getJenisOrderDaily']);
+        Route::post('/orders/jenis/monthly', [KurirController::class, 'getJenisOrderMonthly']);
+
+        Route::get('/jenis-layanan', [KurirController::class, 'layananKurir']);
+        Route::post('/transaksi-manual', [KurirController::class, 'listTransaksi']);
+        Route::post('/transaksi-manual-konsumen', [KurirController::class, 'listTransaksiKonsumen']);
+
+        Route::post('/list-agen', [KurirController::class, 'getAgens']);
+        Route::post('/list-pelanggan', [KurirController::class, 'getPelanggan']);
+
+        Route::post('/save-transaksi-manual', [KurirController::class, 'saveTransaksi']);
+        Route::post('/approve-transaksi-manual', [KurirController::class, 'approveTransaksi']);
+
+        Route::post('/update-konsumen', [KurirController::class, 'updateKonsumen']);
+        Route::post('/update-konsumen-simple', [KurirController::class, 'updateKonsumenSimple']);
+        Route::post('/delete-konsumen', [KurirController::class, 'deleteKonsumen']);
+
+        Route::post('/update-profile-foto', [KurirController::class, 'updateProfileFoto']);
+
+        Route::post('/add-pelanggan', [KurirController::class, 'addDownline']);
+        Route::post('/get-pelanggan', [KurirController::class, 'getDownline']);
+
+        Route::post('/check_user_by_phone', [KurirController::class, 'checkUserByPhone']);
+        Route::post('/create_transfer_request', [KurirController::class, 'createTransferRequest']);
     });
 
-    
 });
 
 

@@ -9,8 +9,62 @@ use DB;
 class LoginController extends Controller
 {
     public function __construct(){
-        cekHeaderApi(getallheaders()['Authorization']);
+        // cekHeaderApi(getallheaders()['Authorization']);
+        $headers = getallheaders();
+        $token = $headers['Authorization'] ?? 
+                $headers['X-Authorization'] ?? 
+                $headers['X-Api-Token'] ?? 
+                null;
+
+        if (!$token) {
+            return response()->json(['error' => 'Authorization header missing'], 401);
+        }
+
+        cekHeaderApi($token);
     }
+
+    private function urlForStoragePath($path)
+    {
+        if (empty($path) || $path === '-') return $path;
+
+        // If already a full URL, return as-is
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        // Normalize the path:
+        // /storage/uploads/sopir/file.jpg -> uploads/sopir/file.jpg (old format)
+        // /uploads/sopir/file.jpg -> uploads/sopir/file.jpg (new format)
+        $normalized = $path;
+        
+        // Remove leading /storage/ or storage/ prefix (old format from storage/app/public)
+        // if (strpos($normalized, '/storage/') === 0) {
+        //     $normalized = substr($normalized, 9); // Remove '/storage/' -> 'uploads/sopir/...'
+        // } elseif (strpos($normalized, 'storage/') === 0) {
+        //     $normalized = substr($normalized, 8); // Remove 'storage/' -> 'uploads/sopir/...'
+        // }
+        
+        // Remove leading slash if exists for new format
+        $normalized = ltrim($normalized, '/');
+        
+        // Build full URL
+        // Option 1: Try Laravel's asset() helper
+        if (function_exists('asset')) {
+            return asset($normalized);
+        }
+
+        // Option 2: Use APP_URL from environment
+        $appUrl = env('APP_URL', null);
+        if ($appUrl) {
+            return rtrim($appUrl, '/') . '/' . $normalized;
+        }
+
+        // Option 3: Fallback to current request host
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        $scheme = (!empty($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http'));
+        return $scheme . '://' . $host . '/' . $normalized;
+    }
+    
     public function loginTest(Request $req){
         // notif_wa_otp('081340094756', '12345');
         // $token = cekHeaderApi(getallheaders()['Authorization']);
@@ -140,23 +194,26 @@ class LoginController extends Controller
         $cek_user = DB::table('rb_konsumen as a')
         ->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')
         ->where('a.no_hp', $req->username)
-        ->get();
+        ->first();
         
-
-        if (count($cek_user) == 1) {
+        header('Content-Type: application/json');
+        if ($cek_user) {
+            if ($cek_user->id_sopir == null) {
+                http_response_code(404);
+                exit(json_encode(['Message' => 'Belum Terdaftar Sebagai Kurir']));
+            }
             $otp = $token = date('Hi').rand(10,99);
             $stop_date = date('Y-m-d H:i:s');
             $update['otp'] = $otp;
             $update['otp_expired'] = date('Y-m-d H:i:s', strtotime($stop_date . ' +5 minute'));
             DB::table('rb_konsumen')->where('no_hp', $req->username)->update($update);
             notif_wa_otp($req->username, $otp);
+            
+            http_response_code(200);
             exit(json_encode(['Message' => $otp]));
-        } else if (count($cek_user) < 1) {
+        } else {
             http_response_code(404);
             exit(json_encode(['Message' => 'Nomor HP Tidak Terdaftar']));
-        } else {
-            http_response_code(400);
-            exit(json_encode(['Message' => 'Hubungi Administrator Untuk Kesalahan Ini']));
         }
 
         
@@ -171,12 +228,12 @@ class LoginController extends Controller
         
 
         $cek_user = DB::table('rb_konsumen as a')
-        ->select('a.*')
+        ->select('a.*','b.agen', 'b.koordinator_kota', 'b.koordinator_kecamatan', 'b.foto_diri')
         ->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')
         ->where('a.no_hp', $req->username)
         ->where('otp', $req->otp)
         ->first();
-
+        header('Content-Type: application/json');
         if ($cek_user) {
 
             if(date('Y-m-d H:i:s') > $cek_user->otp_expired){
@@ -189,11 +246,21 @@ class LoginController extends Controller
             
             DB::table('rb_konsumen')->where('no_hp', $req->username)->update($dtUpdate);
 
+            if (!empty($cek_user->foto_diri)) {
+                $cek_user->foto_diri = $this->urlForStoragePath($cek_user->foto_diri);
+            }
+
             http_response_code(200);
             $dt_result['token'] = $token;
+            $dt_result['id_konsumen'] = $cek_user->id_konsumen;
             $dt_result['nama_lengkap'] = $cek_user->nama_lengkap;
             $dt_result['email'] = $cek_user->email;
             $dt_result['no_hp'] = $cek_user->no_hp;
+            $dt_result['agen'] = $cek_user->agen;
+            $dt_result['koordinator_kota'] = $cek_user->koordinator_kota;
+            $dt_result['koordinator_kecamatan'] = $cek_user->koordinator_kecamatan;
+            $dt_result['foto_diri'] = $cek_user->foto_diri;
+            $dt_result['foto'] = $cek_user->foto_diri;
             $dt_result['level'] = 'kurir';
             exit(json_encode($dt_result));
 

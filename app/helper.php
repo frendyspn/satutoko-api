@@ -37,9 +37,9 @@ if (!function_exists('kirim_wa')) {
 // 		curl_close($curl);
         // Watzup End
         if($sts == 1) {
-            $api_key = 't8Etkr96GczySoW7EDD0XNKMdZf4k85ouTo6lNYcHx107WidgoMMtDZrNu9WnoDH';
+            $api_key = 'Pa5FxaL0g08uxQyMLVeu0Ez4MRyn8PYvTHkD5OpyfXRL6eyIfOMn3Fn';
         } else {
-            $api_key = 'ClQlBMbBSMZ1FdiP33VwUUti9mcTTxxQ1lReelm6YnEYrraooIHx98l1yqvZ4xhL';
+            $api_key = 'Pa5FxaL0g08uxQyMLVeu0Ez4MRyn8PYvTHkD5OpyfXRL6eyIfOMn3Fn';
         }
         
         
