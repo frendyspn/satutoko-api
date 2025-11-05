@@ -1590,6 +1590,41 @@ class KurirController extends Controller
         }
     }
 
+    public function getSaldoKurir($id_konsumen)
+    {
+        $this->getPendingWithdrawRequestsOlderThan7Days();
+
+        $result = DB::table('rb_wallet_users as a')
+            ->leftJoin('rb_konsumen as b', 'b.id_konsumen', '=', 'a.id_konsumen')
+            ->where('b.id_konsumen', $id_konsumen)
+            ->selectRaw('
+                SUM(CASE 
+                    WHEN a.trx_type = ? THEN a.amount 
+                    WHEN a.trx_type = ? THEN -a.amount 
+                    ELSE 0 
+                END) as saldo_akhir
+            ', ['credit', 'debit'])
+            ->first();
+
+        $resultRequest = DB::table('rb_wallet_requests as a')
+            ->leftJoin('rb_konsumen as b', 'b.id_konsumen', '=', 'a.id_konsumen')
+            ->where('b.id_konsumen', $id_konsumen)
+            ->selectRaw('
+                SUM(CASE 
+                    WHEN a.req_type = ? THEN -a.amount 
+                    ELSE 0 
+                END) as saldo_akhir
+            ', ['withdraw'])
+            ->where('a.status', 'pending')
+            ->first();
+
+        $saldo_request = $resultRequest->saldo_akhir ?? 0;
+
+        $saldo = $result->saldo_akhir ?? 0;
+
+        return $saldo;
+    }
+
     public function getBalance(Request $req)
     {
         $this->getPendingWithdrawRequestsOlderThan7Days();
@@ -2063,23 +2098,45 @@ class KurirController extends Controller
                 // Cek saldo kurir
                 $getSaldo = $this->getSaldoKurir($getKurir->id_konsumen);
 
-                if ($getSaldo < $potonganKomisi) {
-                    DB::rollBack();
-                    header('Content-Type: application/json');
-                    http_response_code(400);
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Maaf Saldo Kurang, Silahkan Top Up',
-                        'saldo' => $getSaldo,
-                        'potongan_komisi' => $potonganKomisi
-                    ], 400);
-                }
+                // CEK SALDO
+                // if ($getSaldo < $potonganKomisi) {
+                //     DB::rollBack();
+                //     header('Content-Type: application/json');
+                //     http_response_code(400);
+                //     return response()->json([
+                //         'success' => false,
+                //         'message' => 'Maaf Saldo Kurang, Silahkan Top Up',
+                //         'saldo' => $getSaldo,
+                //         'potongan_komisi' => $potonganKomisi
+                //     ], 400);
+                // }
 
                 $dtInsert['id_sopir'] = $getKurir->id_sopir;
                 $dtInsert['kode_order'] = time() . rand(00, 99);
-                $dtInsert['status'] = 'PENDING';
+
+                if ($getKurir->agen == 1) {
+                    $dtInsert['status'] = 'FINISH';
+                } else {
+                    $dtInsert['status'] = 'PENDING';
+                }
+                
                 
                 $id_transaksi = DB::table('kurir_order')->insertGetId($dtInsert);
+
+                if ($getKurir->agen == 1) {
+                    
+                    DB::table('rb_wallet_users')->insert([
+                        'id_konsumen' => $getKurir->id_konsumen,
+                        'amount' => $potonganKomisi,
+                        'trx_type' => 'debit',
+                        'note' => 'Potongan admin kurir transaksi manual',
+                        'created_at' => date('Y-m-d H:i:s'),
+                    ]);
+
+                    // Bagi komisi
+                    $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $getKurir->id_sopir, $id_transaksi);
+                    
+                }
 
                 DB::commit();
 
@@ -2161,7 +2218,7 @@ class KurirController extends Controller
                     // ];
                     // DB::table('rb_pendapatan_kurir')->insert($dtPotongan);
 
-                    DB::table('rb_wallet_kurir')->insert([
+                    DB::table('rb_wallet_users')->insert([
                         'id_konsumen' => $getKurirOrang->id_konsumen,
                         'amount' => $potonganKomisi,
                         'trx_type' => 'debit',
@@ -2210,6 +2267,173 @@ class KurirController extends Controller
                 'message' => 'Terjadi kesalahan: ' . $e->getMessage()
             ], 500);
         }
+    }
+
+    /**
+     * List transaksi manual untuk agen/kurir (internal)
+     * Request params:
+     * - no_hp: string (required) - nomor hp agen/kurir
+     * - status: string (optional) - filter by status
+     * - tanggal_from: date (optional) - format YYYY-MM-DD
+     * - tanggal_to: date (optional)
+     * - limit: int (optional)
+     * - page: int (optional, default 1)
+     */
+    public function listTransaksi(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            header('Content-Type: application/json');
+            http_response_code(422);
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $getAgen = DB::table('rb_sopir as a')
+            ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_konsumen')
+            ->select('a.*', 'b.no_hp')
+            ->where('b.no_hp', $req->no_hp)
+            ->first();
+
+        if (!$getAgen) {
+            header('Content-Type: application/json');
+            http_response_code(404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Agen/Kurir tidak ditemukan'
+            ], 404);
+        }
+
+        $query = DB::table('kurir_order as a')
+            ->leftJoin('rb_konsumen as p', 'p.id_konsumen', 'a.id_pemesan')
+            ->leftJoin('rb_sopir as s', 's.id_sopir', 'a.id_sopir')
+            ->select('a.*', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
+
+        // only manual kurir entries and belonging to this agent
+        $query->where('a.source', 'MANUAL_KURIR')
+              ->where('a.id_agen', $getAgen->id_konsumen);
+
+        if ($req->filled('status')) {
+            $query->where('a.status', $req->status);
+        }
+
+        if ($req->filled('tanggal_from')) {
+            $query->whereDate('a.tanggal_order', '>=', $req->tanggal_from);
+        }
+        if ($req->filled('tanggal_to')) {
+            $query->whereDate('a.tanggal_order', '<=', $req->tanggal_to);
+        }
+
+        $query->orderBy('a.tanggal_order', 'desc');
+
+        $limit = (int)($req->limit ?? 0);
+        $page = max(1, (int)($req->page ?? 1));
+
+        if ($limit > 0) {
+            $offset = ($page - 1) * $limit;
+            $total = $query->count();
+            $data = $query->offset($offset)->limit($limit)->get();
+        } else {
+            $data = $query->get();
+            $total = $data->count();
+        }
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+            'total' => $total,
+            'message' => 'Daftar transaksi manual berhasil diambil'
+        ]);
+    }
+
+    /**
+     * List transaksi manual untuk konsumen (pelanggan)
+     * Request params:
+     * - no_hp: string (required) - nomor hp pelanggan
+     * - status: string (optional)
+     * - tanggal_from: date (optional) - format YYYY-MM-DD
+     * - tanggal_to: date (optional)
+     * - start_date: date (optional) - alias for tanggal_from
+     * - end_date: date (optional) - alias for tanggal_to
+     * - limit: int (optional)
+     * - page: int (optional, default 1)
+     */
+    public function listTransaksiKonsumen(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            header('Content-Type: application/json');
+            http_response_code(422);
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $konsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp)->first();
+        if (!$konsumen) {
+            header('Content-Type: application/json');
+            http_response_code(404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Konsumen tidak ditemukan'
+            ], 404);
+        }
+
+        $query = DB::table('kurir_order as a')
+            ->leftJoin('rb_konsumen as s', 's.id_konsumen', 'a.id_pemesan')
+            ->select('a.*');
+
+        $query->where('a.source', 'MANUAL_KURIR')
+              ->where('a.id_pemesan', $konsumen->id_konsumen);
+
+        if ($req->filled('status')) {
+            $query->where('a.status', $req->status);
+        }
+
+        // Support both old and new parameter names
+        $tanggalFrom = $req->filled('start_date') ? $req->start_date : ($req->filled('tanggal_from') ? $req->tanggal_from : null);
+        $tanggalTo = $req->filled('end_date') ? $req->end_date : ($req->filled('tanggal_to') ? $req->tanggal_to : null);
+
+        if ($tanggalFrom) {
+            $query->whereDate('a.tanggal_order', '>=', $tanggalFrom);
+        }
+        if ($tanggalTo) {
+            $query->whereDate('a.tanggal_order', '<=', $tanggalTo);
+        }
+
+        $query->orderBy('a.tanggal_order', 'desc');
+
+        $limit = (int)($req->limit ?? 0);
+        $page = max(1, (int)($req->page ?? 1));
+
+        if ($limit > 0) {
+            $offset = ($page - 1) * $limit;
+            $total = $query->count();
+            $data = $query->offset($offset)->limit($limit)->get();
+        } else {
+            $data = $query->get();
+            $total = $data->count();
+        }
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+            'total' => $total,
+            'message' => 'Daftar transaksi manual konsumen berhasil diambil'
+        ]);
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use DB;
+use App;
 use Illuminate\Http\Request;
 
 class Controller extends BaseController
@@ -680,4 +681,169 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
         $pesan = $req->pesan;
         kirim_wa($no_hp, $pesan);
     }    
+
+
+    public function pembagianKomisiKurir($komisi, $id_sopir, $id_order)
+    {
+        try{
+            DB::beginTransaction();
+            
+            App::setLocale(session()->get('locale'));
+            
+            $persenSistem = $this->getConfig('fee_kurir_sistem');
+            $persenReff = $this->getConfig('fee_kurir_ref');
+            $persenKoordinator = $this->getConfig('fee_kurir_koordinator_kota');
+            $persenKoordinatorKecamatan = $this->getConfig('fee_kurir_koordinator_kecamatan');
+            $persenKasCabang = $this->getConfig('fee_kurir_kas_cabang');
+            $persenLainnya = $this->getConfig('fee_kurir_lainnya');
+            $persenAgen = $this->getConfig('fee_kurir_agen');
+    
+            $dtKurir = DB::table('rb_sopir')->where('id_sopir', $id_sopir)->first();
+            
+            $kecamatanKurir = $dtKurir->kecamatan_id;
+            $kotaKurir = $dtKurir->kota_id;
+    
+            if ($persenSistem > 0) {
+                $komisiSistem = $komisi * ($dtKurir->total_komisi/100);
+                $dtSistem['id_konsumen'] = 0;
+                $dtSistem['amount'] = $komisiSistem;
+                $dtSistem['trx_type'] = 'credit';
+                $dtSistem['note'] = 'Komisi admin kurir';
+                $dtSistem['created_at'] = date('Y-m-d H:i:s');
+                DB::table('rb_wallet_users')->insert($dtSistem);
+            }
+    
+            if ($persenReff > 0) {
+                $komisiReff = $komisi * ($persenReff/100);
+                $kasihAdmin = false;
+    
+                $cekReff = DB::table('rb_konsumen as a')->select('a.referral_id')->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')->where('b.id_sopir', $id_sopir)->first();
+                if ($cekReff) {
+                    if ($cekReff->referral_id != '') {
+                        $dtReff['id_konsumen'] = $cekReff->referral_id;
+                        $dtReff['amount'] = $komisiReff;
+                        $dtReff['trx_type'] = 'credit';
+                        $dtReff['note'] = 'Komisi Refferal Kurir';
+                        $dtReff['created_at'] = date('Y-m-d H:i:s');
+                        DB::table('rb_wallet_users')->insert($dtReff);
+                    } else {
+                        $kasihAdmin = true;
+                    }
+                } else {
+                    $kasihAdmin = true;
+                }
+    
+                if ($kasihAdmin) {
+                    $dtReff['id_konsumen'] = 0;
+                    $dtReff['amount'] = $komisiReff;
+                    $dtReff['trx_type'] = 'credit';
+                    $dtReff['note'] = 'Komisi Refferal kurir';
+                    $dtReff['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtReff);
+                }
+                
+            }
+    
+            if ($persenKoordinator > 0 && $kotaKurir > 0) {
+                $komisiKoordinator = $komisi * ($persenKoordinator/100);
+                $kasihAdmin = false;
+    
+                $cekKoordinator = DB::table('rb_sopir')->where('kota_id', $kotaKurir)->where('koordinator_kota', '1')->first();
+                if ($cekKoordinator) {
+                    $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
+                    $dtKoordinator['amount'] = $komisiKoordinator;
+                    $dtKoordinator['trx_type'] = 'credit';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kurir';
+                    $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtKoordinator);
+                        
+                } else {
+                    $kasihAdmin = true;
+                }
+    
+                if ($kasihAdmin) {
+                    $dtKoordinator['id_konsumen'] = 0;
+                    $dtKoordinator['amount'] = $komisiKoordinator;
+                    $dtKoordinator['trx_type'] = 'credit';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kota kurir';
+                    $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtKoordinator);
+                }
+                
+            }
+    
+            if ($persenKoordinatorKecamatan > 0 && $kecamatanKurir > 0) {
+                $komisiKoordinatorKecamatan = $komisi * ($persenKoordinatorKecamatan/100);
+                $kasihAdmin = false;
+    
+                $cekKoordinator = DB::table('rb_sopir')->where('kecamatan_id', $kecamatanKurir)->where('koordinator_kecamatan', '1')->first();
+                if ($cekKoordinator) {
+                    $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
+                    $dtKoordinator['amount'] = $komisiKoordinatorKecamatan;
+                    $dtKoordinator['trx_type'] = 'credit';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan Kurir';
+                    $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtKoordinator);
+                        
+                } else {
+                    $kasihAdmin = true;
+                }
+    
+                if ($kasihAdmin) {
+                    $dtKoordinator['id_konsumen'] = 0;
+                    $dtKoordinator['amount'] = $komisiKoordinatorKecamatan;
+                    $dtKoordinator['trx_type'] = 'credit';
+                    $dtKoordinator['note'] = 'Komisi Koordinator kurir';
+                    $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtKoordinator);
+                }
+                
+            }
+    
+    
+            if ($persenKasCabang > 0) {
+                $komisiKasCabang = $komisi * ($persenKasCabang/100);
+    
+                $dtKasCabang['id_konsumen'] = 0;
+                $dtKasCabang['amount'] = $komisiKasCabang;
+                $dtKasCabang['trx_type'] = 'credit';
+                $dtKasCabang['note'] = '';
+                $dtKasCabang['created_at'] = date('Y-m-d H:i:s');
+                DB::table('rb_wallet_users')->insert($dtKasCabang);
+            }
+    
+    
+            if ($persenAgen > 0) {
+                $komisiAgen = $komisi * ($persenAgen/100);
+                $kasihAdmin = false;
+    
+                $cek_agen = DB::table('kurir_order')->where('id', $id_order)->where('id_agen', '>', '0')->first();
+                if ($cek_agen) {
+                    $dtAgen['id_konsumen'] = $cek_agen->id_agen;
+                    $dtAgen['amount'] = $komisiAgen;
+                    $dtAgen['trx_type'] = 'credit';
+                    $dtAgen['note'] = 'Komisi Agen Kurir';
+                    $dtAgen['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtAgen);
+                } else {
+                    $kasihAdmin = true;
+                }
+    
+                if ($kasihAdmin) {
+                    $dtAgen['id_konsumen'] = 0;
+                    $dtAgen['amount'] = $komisiAgen;
+                    $dtAgen['trx_type'] = 'credit';
+                    $dtAgen['note'] = 'Komisi Agen kurir';
+                    $dtAgen['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('rb_wallet_users')->insert($dtAgen);
+                }
+            }
+
+            DB::commit();
+            return true;
+        } catch (PDOException $e) {
+            DB::rollBack();
+            return false;
+        }
+    }
 }

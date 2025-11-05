@@ -7,6 +7,8 @@ use App\Http\Controllers\V1\KasirController;
 use App\Http\Controllers\V1\KurirController;
 use App\Http\Controllers\V1\WalletController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\V1\KurirOrderController;
+
 
 use App\Http\Controllers\SatuAppsController;
 
@@ -125,6 +127,20 @@ Route::prefix('kurir')->group(function () {
 
         Route::post('/check_user_by_phone', [KurirController::class, 'checkUserByPhone']);
         Route::post('/create_transfer_request', [KurirController::class, 'createTransferRequest']);
+
+        // Get available orders for kurir
+        Route::get('/kurir-orders/available', [KurirOrderController::class, 'getAvailableOrders']);
+        
+        // Accept order
+        Route::post('/kurir-orders/{orderId}/accept', [KurirOrderController::class, 'acceptOrder']);
+        
+        // Get kurir's orders
+        Route::get('/kurir-orders/my-orders', [KurirOrderController::class, 'getMyOrders']);
+        
+        // Update order status
+        Route::patch('/kurir-orders/{orderId}/status', [KurirOrderController::class, 'updateOrderStatus']);
+
+        Route::post('/kurir-orders', [KurirOrderController::class, 'createOrder']);
     });
 
 });
