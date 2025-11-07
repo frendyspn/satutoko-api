@@ -141,6 +141,9 @@ Route::prefix('kurir')->group(function () {
         Route::patch('/kurir-orders/{orderId}/status', [KurirOrderController::class, 'updateOrderStatus']);
 
         Route::post('/kurir-orders', [KurirOrderController::class, 'createOrder']);
+
+        Route::post('/live-order', [KurirController::class, 'listLiveOrder']);
+        Route::post('/live-order/create', [KurirController::class, 'saveLiveOrder']);
     });
 
 });
