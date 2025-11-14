@@ -144,6 +144,14 @@ Route::prefix('kurir')->group(function () {
 
         Route::post('/live-order', [KurirController::class, 'listLiveOrder']);
         Route::post('/live-order/create', [KurirController::class, 'saveLiveOrder']);
+        Route::post('/live-order/ambil', [KurirController::class, 'ambilLiveOrder']);
+        Route::post('/live-order/detail-penjualan', [KurirController::class, 'getPenjualan']);
+        Route::post('/live-order/update', [KurirController::class, 'updateLiveOrder']);
+        Route::post('/live-order/pickup', [KurirController::class, 'pickupOrder']);
+        Route::post('/live-order/complete', [KurirController::class, 'completeOrder']);
+        Route::post('/live-order/detail-order', [KurirController::class, 'getOrderDetail']);
+        Route::post('/komisi', [KurirController::class, 'getKomisi']);
+        Route::post('/admin-kurir', [KurirController::class, 'getPotonganAdmin']);
     });
 
 });

@@ -23,14 +23,27 @@ return [
      */
     'apps' => [
         [
-            'id' => env('PUSHER_APP_ID'),
-            'name' => env('APP_NAME'),
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'path' => env('PUSHER_APP_PATH'),
+            'id' => 'local',
+            'name' => 'Local',
+            'key' => 'local',
+            'secret' => 'local',
+            'path' => 'app',
             'capacity' => null,
             'enable_client_messages' => false,
             'enable_statistics' => true,
+            'allowed_origins' => ['*'], // Allow all origins for React Native
+        ],
+    ],
+
+    'replication' => [
+        'mode' => env('WEBSOCKETS_REPLICATION_MODE', 'local'),
+        'modes' => [
+            'local' => [
+                'channel_manager' => \BeyondCode\LaravelWebSockets\ChannelManagers\LocalChannelManager::class,
+            ],
+            'redis' => [
+                'channel_manager' => \BeyondCode\LaravelWebSockets\ChannelManagers\RedisChannelManager::class,
+            ],
         ],
     ],
 

@@ -103,7 +103,15 @@ class KurirOrderController extends Controller
             DB::commit();
 
             // Broadcast update
-            broadcast(new KurirOrderAccepted($order))->toOthers();
+            // broadcast(new KurirOrderAccepted($order))->toOthers();
+            broadcast(new OrderStatusUpdated([
+                'id' => $order->id,
+                'kode_order' => $order->kode_order,
+                'status' => 'PROCESS',
+                'status_text' => 'Sedang Diproses',
+                'id_kurir' => $user->id,
+                'kurir_name' => $user->name,
+            ]))->toOthers();
 
             return response()->json([
                 'success' => true,
