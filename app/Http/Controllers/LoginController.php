@@ -243,6 +243,7 @@ class LoginController extends Controller
             $token = Hash::make(date('YmdHi').rand(0000,9999));
             $dtUpdate['otp_expired'] = (string)date('Y-m-d H:i:s');
             $dtUpdate['remember_token'] = (string)$token;
+            $dtUpdate['device_token'] = (string)$req->fcm_token;
             
             DB::table('rb_konsumen')->where('no_hp', $req->username)->update($dtUpdate);
 

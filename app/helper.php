@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Services\FcmNotificationService;
 
 if (!function_exists('kirim_wa')) {
     function kirim_wa($user_no_hp, $pesan, $sts = 1)
@@ -37,9 +38,9 @@ if (!function_exists('kirim_wa')) {
 // 		curl_close($curl);
         // Watzup End
         if($sts == 1) {
-            $api_key = 'Pa5FxaL0g08uxQyMLVeu0Ez4MRyn8PYvTHkD5OpyfXRL6eyIfOMn3Fn';
+            $api_key = 'SpGFIChfZ1u3AzTvXn8E6JhJ9xYz6dEecKIGTZ8JeUo8gmyF3xrQxYc';
         } else {
-            $api_key = 'Pa5FxaL0g08uxQyMLVeu0Ez4MRyn8PYvTHkD5OpyfXRL6eyIfOMn3Fn';
+            $api_key = 'SpGFIChfZ1u3AzTvXn8E6JhJ9xYz6dEecKIGTZ8JeUo8gmyF3xrQxYc';
         }
         
         
@@ -94,6 +95,88 @@ if (!function_exists('notif_wa_otp')) {
         kirim_wa($no_hp, $pesan, $sts);
     }
 }
+
+if (!function_exists('notifKonsumenNewOrder')) {
+    function notifKonsumenNewOrder($id_transaksi){
+        $getOrder = get_order_kurir($id_transaksi);
+
+        $pesan = 'Halo Kak '.$getOrder->nama_pemesan.', 
+Berikut adalah pesanan Kakak:
+Id transaksi: '.$getOrder->kode_order.'
+Jenis pesanan : '.$getOrder->jenis_layanan.'
+Alamat Penjemputan: '.$getOrder->alamat_jemput.'
+Alamat Tujuan: '.$getOrder->alamat_antar.'
+Tarif: '.$getOrder->tarif.'
+
+Nama Kurir: '.$getOrder->nama_kurir.'
+No wa Kurir: '.$getOrder->no_hp_kurir.'
+
+Status: Menuju Alamat Penjemputan';
+        
+        kirim_wa($getOrder->no_hp_pemesan, $pesan);
+    }
+}
+
+if (!function_exists('notifKonsumenFinishOrder')) {
+    function notifKonsumenFinishOrder($id_transaksi){
+        $getOrder = get_order_kurir($id_transaksi);
+
+        $pesan = 'Halo Kak '.$getOrder->nama_pemesan.',';
+
+if ($getOrder->source == 'MANUAL_KURIR') {
+$pesan .= 'Terimakasih sudah menggunakan layanan jasa klukQuick. 
+';
+}
+
+$pesan .= 'Berikut adalah pesanan Kakak:
+Id transaksi: '.$getOrder->kode_order.'
+Jenis pesanan : '.$getOrder->jenis_layanan.'
+Alamat Penjemputan: '.$getOrder->alamat_jemput.'
+Alamat Tujuan: '.$getOrder->alamat_antar.'
+Tarif: '.$getOrder->tarif.'
+
+Nama Kurir: '.$getOrder->nama_kurir.'
+No wa Kurir: '.$getOrder->no_hp_kurir.'
+
+Status: Selesai';
+
+if ($getOrder->source == 'MANUAL_KURIR') {
+$pesan .= 'Semoga Kak '.$getOrder->nama_pemesan.' sehat selalu dan bisa order klikQuick kembali di lain waktu 
+
+Terimakasih.
+';
+}
+        
+        kirim_wa($getOrder->no_hp_pemesan, $pesan);
+    }
+}
+
+
+if (!function_exists('notifAgenNewOrder')) {
+    function notifAgenNewOrder($id_transaksi){
+        $getOrder = get_order_kurir($id_transaksi);
+
+        $pesan = 'Ada Order Baru Butuh Approve Agen';
+        
+        kirim_wa($getOrder->no_hp_agen, $pesan);
+    }
+}
+
+if (!function_exists('get_order_kurir')) {
+    function get_order_kurir($id_transaksi){
+        $getOrder = DB::table('kurir_order as a')
+        ->select('a.*', 'k_pemesan.no_hp as no_hp_pemesan', 'k_pemesan.nama_lengkap as nama_pemesan', 'k_agen.no_hp as no_hp_agen', 'k_kurir.no_hp as no_hp_kurir', 'k_kurir.nama_lengkap as nama_kurir')
+        ->leftJoin('rb_konsumen as k_pemesan', 'k_pemesan.id_konsumen', 'a.id_pemesan')
+        ->leftJoin('rb_konsumen as k_agen', 'k_agen.id_konsumen', 'a.id_agen')
+        ->leftJoin('rb_sopir as b', 'b.id_sopir', 'a.id_sopir')
+        ->leftJoin('rb_konsumen as k_kurir', 'k_kurir.id_konsumen', 'b.id_konsumen')
+        ->where('a.id',$id_transaksi)
+        ->first();
+
+        return $getOrder;
+    }
+}
+
 
 if (!function_exists('hari_ind')) {
     function hari_ind($day){
@@ -354,5 +437,42 @@ if (!function_exists('logApi')) {
 
         // logApi(static::class, __FUNCTION__, '', json_encode($req->all()), $otp, '200');
         
+    }
+}
+
+
+if (!function_exists('fcm_notify')) {
+    function fcm_notify($id_konsumen, $title, $body, $data = [])
+    {
+        $konsumen = DB::table('rb_konsumen')->where('id_konsumen',$id_konsumen)->first();
+        if(!$konsumen){
+            return;
+        }
+
+        $response = app(FcmNotificationService::class)
+            ->sendToToken($konsumen->device_token, $title, $body, $data);
+
+        // Simpan log ke database
+        DB::table('fcm_logs')->insert([
+            'id_konsumen' => $id_konsumen,
+            'device_token' => $konsumen->device_token,
+            'title' => $title,
+            'body' => $body,
+            'data' => json_encode($response['payload']),
+            'response_status' => $response['status'],
+            'response_body' => json_encode($response['body']),
+            'success' => $response['success'],
+            'created_at' => now()
+        ]);
+
+        return $response;
+    }
+}
+
+if (!function_exists('fcm_topic')) {
+    function fcm_topic($topic, $title, $body, $data = [])
+    {
+        return app(FcmNotificationService::class)
+        ->sendToTopic($topic, $title, $body, $data);
     }
 }

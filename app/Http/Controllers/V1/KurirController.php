@@ -1374,11 +1374,63 @@ class KurirController extends Controller
             ->select('b.id_konsumen', 'b.nama_lengkap', 'b.no_hp');
 
         // Filter pencarian berdasarkan nama_lengkap atau no_hp
-        $search = $req->input('search');
+        $search = trim((string)$req->input('search'));
         if (!empty($search) && $search != '') {
-            $query->where(function($q) use ($search) {
-                $q->where('b.nama_lengkap', 'like', '%' . $search . '%')
-                  ->orWhere('b.no_hp', 'like', '%' . $search . '%');
+            // helper to remove non-digits
+            $onlyDigits = preg_replace('/[^0-9]/', '', $search);
+
+            $query->where(function($q) use ($search, $onlyDigits) {
+                // always allow name search
+                $q->where('b.nama_lengkap', 'like', '%' . $search . '%');
+
+                // if search contains digits, treat it as phone and add multiple variants
+                if ($onlyDigits !== '') {
+                    // canonical forms to match: +62..., 62..., 08..., and digits-only (no leading +)
+                    $variants = [];
+
+                    // digits-only as stored (could be 08123... or 628123... or +628123...)
+                    $digits = $onlyDigits;
+
+                    // if starts with 62 (e.g. 62812...)
+                    if (strpos($digits, '62') === 0) {
+                        // as +62...
+                        $variants[] = '+' . $digits;
+                        // as 62...
+                        $variants[] = $digits;
+                        // as 08... (replace leading 62 with 0)
+                        $variants[] = '0' . substr($digits, 2);
+                    } elseif (strpos($digits, '0') === 0) {
+                        // already starts with 0 => 08...
+                        $variants[] = $digits;
+                        // also possible without leading 0 (e.g. 8...)
+                        if (strpos($digits, '08') === 0) {
+                            $variants[] = ltrim($digits, '0');
+                        }
+                        // also with +62 variant
+                        if (strpos($digits, '08') === 0) {
+                            $variants[] = '+62' . substr($digits, 1);
+                            $variants[] = '62' . substr($digits, 1);
+                        }
+                    } elseif (strpos($digits, '8') === 0) {
+                        // starts with 8 e.g. 8123... => 08123..., +628123..., 628123...
+                        $variants[] = '0' . $digits;
+                        $variants[] = '+62' . $digits;
+                        $variants[] = '62' . $digits;
+                    } else {
+                        // fallback: try partial matches
+                        $variants[] = $digits;
+                    }
+
+                    // make variants unique
+                    $variants = array_values(array_unique($variants));
+
+                    // add where clauses for each variant (exact or LIKE)
+                    foreach ($variants as $v) {
+                        $q->orWhere('b.no_hp', 'like', '%' . $v . '%');
+                    }
+                } else {
+                    // if not digits, still allow searching name only (already added)
+                }
             });
         }
 
@@ -1769,9 +1821,19 @@ class KurirController extends Controller
     {
         $no_hp = $request->input('no_hp');
         $date = $request->input('date', date('Y-m-d'));
+        if ($request->input('type') == 'pasca_order') {
+            $type = ['MANUAL_KURIR'];
+        } else if ($request->input('type') == 'live_order') {
+            $type = ['LIVE_ORDER'];
+        } else {
+            $type = ['LIVE_ORDER', 'MANUAL_KURIR'];
+        }
+        
+        Log::info($type);
+        Log::info($request->all());
         
         // Data untuk bar chart (hourly)
-        $ordersHourly = $this->getOrders($no_hp, 'daily', $date);
+        $ordersHourly = $this->getOrders($no_hp, 'daily', $date, $type);
         
         // Data untuk pie chart jenis order
         $jenisOrder = DB::table('kurir_order as a')
@@ -1787,6 +1849,7 @@ class KurirController extends Controller
             ->whereDate('a.tanggal_order', $date)
             ->whereNotNull('a.jenis_layanan')
             ->where('a.jenis_layanan', '!=', '')
+            ->whereIn('a.source', $type)
             ->groupBy('a.jenis_layanan')
             ->get();
         
@@ -1831,14 +1894,21 @@ class KurirController extends Controller
         $no_hp = $request->input('no_hp');
         $year = $request->input('year', date('Y'));
         $month = $request->input('month', date('m'));
+        if ($request->input('type') == 'pasca_order') {
+            $type = ['MANUAL_KURIR'];
+        } else if ($request->input('type') == 'live_order') {
+            $type = ['LIVE_ORDER'];
+        } else {
+            $type = ['LIVE_ORDER', 'MANUAL_KURIR'];
+        }
         
         // Data untuk bar chart (daily in month)
-        $ordersDaily = $this->getOrders($no_hp, 'monthly', null, $year, $month);
+        $ordersDaily = $this->getOrders($no_hp, 'monthly', null, $type, $year, $month);
         
         // Data untuk pie chart jenis order (full month)
         $firstDay = sprintf('%04d-%02d-01', $year, $month);
         $lastDay = date('Y-m-t', strtotime($firstDay));
-        $jenisOrder = $this->getJenisOrderRange($no_hp, $firstDay, $lastDay);
+        $jenisOrder = $this->getJenisOrderRange($no_hp, $firstDay, $lastDay, $type);
         
         // Format untuk chart
         $labels = [];
@@ -1878,13 +1948,14 @@ class KurirController extends Controller
     }
     
     // Helper method untuk get orders hourly/monthly
-    private function getOrders($no_hp, $mode, $date = null, $year = null, $month = null)
+    private function getOrders($no_hp, $mode, $date = null, $type = ['LIVE_ORDER','MANUAL_KURIR'], $year = null, $month = null)
     {
         $query = DB::table('kurir_order as a')
             ->leftJoin('rb_sopir as b', 'b.id_sopir', '=', 'a.id_sopir')
             ->leftJoin('rb_konsumen as c', 'c.id_konsumen', '=', 'b.id_konsumen')
             ->where('a.status', 'FINISH')
-            ->where('c.no_hp', $no_hp);
+            ->where('c.no_hp', $no_hp)
+            ->whereIn('a.source', $type);
         
         if ($mode === 'daily' || $mode === 'hourly') {
             $query->select([
@@ -1912,7 +1983,7 @@ class KurirController extends Controller
     }
 
     // Helper: Get jenis order untuk range tanggal
-    private function getJenisOrderRange($no_hp, $startDate, $endDate)
+    private function getJenisOrderRange($no_hp, $startDate, $endDate, $type)
     {
         return DB::table('kurir_order as a')
             ->select([
@@ -1927,6 +1998,7 @@ class KurirController extends Controller
             ->whereBetween(DB::raw('DATE(a.tanggal_order)'), [$startDate, $endDate])
             ->whereNotNull('a.jenis_layanan')
             ->where('a.jenis_layanan', '!=', '')
+            ->whereIn('a.source', $type)
             ->groupBy('a.jenis_layanan')
             ->get();
     }
@@ -2133,12 +2205,29 @@ class KurirController extends Controller
                         'note' => 'Potongan admin kurir transaksi manual',
                         'created_at' => date('Y-m-d H:i:s'),
                         'source' => 'KURIR',
-                        'source_id' => $id_transaksi
+                        'source_id' => $id_transaksi,
+                        'type' => 'KOMISI',
                     ]);
 
                     // Bagi komisi
                     $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $getKurir->id_sopir, $id_transaksi);
+
+                    fcm_notify(
+                        $req->agen_kurir,
+                        "Perlu Verifikasi",
+                        "Halo kak  silahkan cek ada transaksi yang perlu diverifikasi",
+                        ["order_id" => $id_transaksi]
+                    );
                     
+                    notifKonsumenFinishOrder($id_transaksi);
+                } else {
+                    // notifAgenNewOrder($id_transaksi);
+                    fcm_notify(
+                        $req->agen_kurir,
+                        "Perlu Verifikasi",
+                        "Halo kak ".$getKurir->nama_lengkap.", silahkan cek ada transaksi yang perlu diverifikasi",
+                        ["order_id" => $id_transaksi]
+                    );
                 }
 
                 DB::commit();
@@ -2228,11 +2317,14 @@ class KurirController extends Controller
                         'note' => 'Potongan admin kurir transaksi manual',
                         'created_at' => date('Y-m-d H:i:s'),
                         'source' => 'KURIR',
-                        'source_id' => $req->id_transaksi
+                        'source_id' => $req->id_transaksi,
+                        'type' => 'KOMISI',
                     ]);
 
                     // Bagi komisi
                     $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $req->id_sopir, $req->id_transaksi);
+
+                    notifKonsumenFinishOrder($req->id_transaksi);
                     
                     if ($bagiKomisi) {
                         DB::commit();
@@ -2286,6 +2378,7 @@ class KurirController extends Controller
      */
     public function listTransaksi(Request $req)
     {
+        Log::info($req->all());
         $validator = \Validator::make($req->all(), [
             'no_hp' => 'required',
         ]);
@@ -2315,24 +2408,33 @@ class KurirController extends Controller
             ], 404);
         }
 
+        if ($req->input('service_type') == 'pasca_order') {
+            $type = ['MANUAL_KURIR'];
+        } else if ($req->input('service_type') == 'live_order') {
+            $type = ['LIVE_ORDER'];
+        } else {
+            $type = ['LIVE_ORDER', 'MANUAL_KURIR'];
+        }
+
+
         $query = DB::table('kurir_order as a')
             ->leftJoin('rb_konsumen as p', 'p.id_konsumen', 'a.id_pemesan')
             ->leftJoin('rb_sopir as s', 's.id_sopir', 'a.id_sopir')
-            ->select('a.*', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
+            ->select('a.*', 's.id_konsumen as id_kurir', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
 
         // only manual kurir entries and belonging to this agent
-        $query->whereIn('a.source', ['MANUAL_KURIR','LIVE_ORDER'])
-              ->where('a.id_sopir', $getAgen->id_konsumen);
+        $query->whereIn('a.source', $type)
+              ->where('a.id_sopir', $getAgen->id_sopir);
 
         if ($req->filled('status')) {
             $query->where('a.status', $req->status);
         }
 
-        if ($req->filled('tanggal_from')) {
-            $query->whereDate('a.tanggal_order', '>=', $req->tanggal_from);
+        if ($req->filled('start_date')) {
+            $query->whereDate('a.tanggal_order', '>=', $req->start_date.' 00:00:00');
         }
-        if ($req->filled('tanggal_to')) {
-            $query->whereDate('a.tanggal_order', '<=', $req->tanggal_to);
+        if ($req->filled('end_date')) {
+            $query->whereDate('a.tanggal_order', '<=', $req->end_date.' 23:59:59');
         }
 
         $query->orderBy('a.tanggal_order', 'desc');
@@ -2662,9 +2764,17 @@ class KurirController extends Controller
 
     public function listLiveOrder(Request $req)
     {
-        $validator = \Validator::make($req->all(), [
-            'no_hp' => 'required',
-        ]);
+        Log::info($req->all());
+        if ($req->id) {
+            $validator = \Validator::make($req->all(), [
+                'id' => 'required',
+            ]);
+        } else {
+            $validator = \Validator::make($req->all(), [
+                'no_hp' => 'required',
+            ]);
+        }
+        
 
         if ($validator->fails()) {
             header('Content-Type: application/json');
@@ -2694,21 +2804,28 @@ class KurirController extends Controller
         $query = DB::table('kurir_order as a')
             ->leftJoin('rb_konsumen as p', 'p.id_konsumen', 'a.id_pemesan')
             ->leftJoin('rb_sopir as s', 's.id_sopir', 'a.id_sopir')
-            ->select('a.*', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
+            ->select('a.*', 's.id_konsumen as id_kurir', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
 
-        // only manual kurir entries and belonging to this agent
-        $query->where('a.source', 'LIVE_ORDER')
-              ->where('a.id_agen', $getAgen->id_konsumen);
+        if ($req->id) {
+            $query->where('a.id', $req->id);
+        } else {
 
-        if ($req->filled('status')) {
-            $query->where('a.status', $req->status);
-        }
+        
+            // only manual kurir entries and belonging to this agent
+            $query->where('a.source', 'LIVE_ORDER')
+                ->where('a.id_agen', $getAgen->id_konsumen);
 
-        if ($req->filled('tanggal_from')) {
-            $query->whereDate('a.tanggal_order', '>=', $req->tanggal_from);
-        }
-        if ($req->filled('tanggal_to')) {
-            $query->whereDate('a.tanggal_order', '<=', $req->tanggal_to);
+            if ($req->filled('status')) {
+                $query->where('a.status', $req->status);
+            }
+
+            if ($req->filled('start_date')) {
+                $query->whereDate('a.tanggal_order', '>=', $req->start_date);
+            }
+            if ($req->filled('end_date')) {
+                $query->whereDate('a.tanggal_order', '<=', $req->end_date);
+            }
+
         }
 
         $query->orderBy('a.tanggal_order', 'desc');
@@ -2867,11 +2984,13 @@ class KurirController extends Controller
                 'id_agen' => $req->agen_kurir,
                 'id_pemesan' => $id_pemesan,
                 'alamat_jemput' => $req->alamat_penjemputan,
+                'titik_jemput' => $req->link_maps_penjemputan ?? '',
                 'alamat_antar' => $req->alamat_tujuan,
+                'titik_antar' => $req->link_maps_tujuan ?? '',
                 'jenis_layanan' => $req->nama_layanan,
                 'metode_pembayaran' => 'CASH',
                 'pemberi_barang' => $req->nama_toko ?? '',
-                'tanggal_order' => $req->tanggal_order ?? date('Y-m-d H:i:s'),
+                'tanggal_order' => ($req->tanggal_order ? $req->tanggal_order . ' ' . date('H:i:s') : date('Y-m-d H:i:s')),
             ];
             Log::info(json_encode($dtInsert));
             // Handle different actions
@@ -2968,22 +3087,23 @@ class KurirController extends Controller
 
                 
 
-                if ($getKurir->agen == 1) {
+                // if ($getKurir->agen == 1) {
                     
-                    DB::table('rb_wallet_users')->insert([
-                        'id_konsumen' => $getKurir->id_konsumen,
-                        'amount' => $potonganKomisi,
-                        'trx_type' => 'debit',
-                        'note' => 'Potongan admin kurir transaksi manual',
-                        'created_at' => date('Y-m-d H:i:s'),
-                        'source' => 'KURIR',
-                        'source_id' => $id_transaksi
-                    ]);
+                //     DB::table('rb_wallet_users')->insert([
+                //         'id_konsumen' => $getKurir->id_konsumen,
+                //         'amount' => $potonganKomisi,
+                //         'trx_type' => 'debit',
+                //         'note' => 'Potongan admin kurir transaksi manual',
+                //         'created_at' => date('Y-m-d H:i:s'),
+                //         'source' => 'KURIR',
+                //         'source_id' => $id_transaksi
+                //     ]);
 
-                    // Bagi komisi
-                    $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $getKurir->id_sopir, $id_transaksi);
+                //     // Bagi komisi
+                //     $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $getKurir->id_sopir, $id_transaksi);
                     
-                }
+                // }
+
 
                 DB::commit();
 
@@ -3164,9 +3284,11 @@ class KurirController extends Controller
             }
 
             if ($req->btn_simpan == 'ambil_order') {
-                $dtInsert['id_sopir'] = $getKurir->id_konsumen;
+                $dtInsert['id_sopir'] = $getKurir->id_sopir;
                 $dtInsert['status'] = 'PICKUP';
                 DB::table('kurir_order')->where('id', $req->id_transaksi)->update($dtInsert);
+
+                notifKonsumenNewOrder($req->id_transaksi);
 
                 DB::commit();
 
@@ -3489,11 +3611,28 @@ class KurirController extends Controller
                 ], 404);
             }
 
+            $getKurir = DB::table('rb_sopir as a')
+                ->select('a.*')
+                ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_konsumen')
+                ->where('a.id_konsumen', $idSopir)
+                ->first();
+
+            if (!$getKurir) {
+                header('Content-Type: application/json');
+                http_response_code(404);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data kurir tidak ditemukan'
+                ], 404);
+            }
+
+            $idSopir = $getKurir->id_sopir;
+
             // Verify that the kurir is assigned to this transaction
             if ($transaksi->id_sopir != $idSopir) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Anda tidak memiliki akses untuk transaksi ini '
+                    'message' => 'Anda tidak memiliki akses untuk transaksi ini '.$transaksi->id_sopir.' - '.$idSopir
                 ], 403);
             }
 
@@ -3618,6 +3757,23 @@ class KurirController extends Controller
                 ], 404);
             }
 
+            $getKurir = DB::table('rb_sopir as a')
+                ->select('a.*')
+                ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_konsumen')
+                ->where('a.id_konsumen', $idSopir)
+                ->first();
+
+            if (!$getKurir) {
+                header('Content-Type: application/json');
+                http_response_code(404);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data kurir tidak ditemukan'
+                ], 404);
+            }
+
+            $idSopir = $getKurir->id_sopir;
+
             // Verify that the kurir is assigned to this transaction
             if ($transaksi->id_sopir != $idSopir) {
                 return response()->json([
@@ -3675,22 +3831,8 @@ class KurirController extends Controller
                 'waktu_serah_terima_barang' => now(),
             ]);
 
-            // Log the complete action
-            Log::info('Order completion completed', [
-                'id_transaksi' => $idTransaksi,
-                'id_sopir' => $idSopir,
-                'jenis_layanan' => $jenisLayanan,
-                'foto_complete' => $fotoCompletePath,
-            ]);
-
             // Broadcast status update via WebSocket if needed
             // You can implement real-time updates here
-
-            $getKurir = DB::table('rb_sopir as a')
-            ->select('a.*')
-            ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_konsumen')
-            ->where('b.id_konsumen', $idSopir)
-            ->first();
 
             // Hitung potongan komisi
             if ($getKurir->total_komisi != 0) {
@@ -3711,6 +3853,8 @@ class KurirController extends Controller
                     ]);
 
             $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $getKurir->id_sopir, $idTransaksi);
+
+            notifKonsumenFinishOrder($transaksi->id);
 
             return response()->json([
                 'success' => true,
@@ -3740,8 +3884,9 @@ class KurirController extends Controller
     {
         $id = $req->id_transaksi;
         $transaction_detail = DB::table('kurir_order as a')
-                ->select('a.*', 'b.nama_lengkap as nama_sopir', 'c.nama_lengkap as nama_pelanggan', 'c.no_hp as no_hp_pelanggan')
-                ->leftJoin('rb_konsumen as b','b.id_konsumen','a.id_sopir')
+                ->select('a.*', 'b.nama_lengkap as nama_sopir', 'b.no_hp as no_hp_sopir', 'b.id_konsumen as id_kurir', 'c.nama_lengkap as nama_pelanggan', 'c.no_hp as no_hp_pelanggan')
+                ->leftJoin('rb_sopir as d','d.id_sopir','a.id_sopir')
+                ->leftJoin('rb_konsumen as b','b.id_konsumen','d.id_konsumen')
                 ->leftJoin('rb_konsumen as c','c.id_konsumen','a.id_pemesan')
                 ->where('a.id', $id)
                 ->first();
@@ -3790,6 +3935,30 @@ class KurirController extends Controller
             'success' => true,
             'message' => 'Sukses',
             'data' => $transaction_detail
+        ]);
+    }
+
+    public function getNotifications(Request $req)
+    {
+        $id_konsumen = $req->id_konsumen;
+
+        $notifications = DB::table('fcm_logs')
+            ->where('id_konsumen', $id_konsumen)
+            ->where('success', '1')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $notifications_new = DB::table('fcm_logs')
+            ->where('id_konsumen', $id_konsumen)
+            ->where('success', '1')
+            ->where('seen', '0')
+            ->count();
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'message' => 'Sukses',
+            'data' => ['notifications' => $notifications, 'notifications_new' => $notifications_new]
         ]);
     }
 

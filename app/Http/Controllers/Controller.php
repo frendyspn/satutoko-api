@@ -15,8 +15,18 @@ class Controller extends BaseController
 
     public function testNotif(){
         // return sendNotif();
-        return notif_wa_otp('081340094756', '12345');
+        // return notif_wa_otp('081340094756', '12345');
         // return notifOrderBaruWa();
+        $token = 537;
+
+        $result = fcm_notify(
+            $token,
+            "Order Update",
+            "Pesanan Anda sedang diproses",
+            ["order_id" => "12345"]
+        );
+
+        return response()->json($result);
     }
 
 
@@ -713,6 +723,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $dtSistem['created_at'] = date('Y-m-d H:i:s');
                 $dtSistem['source'] = 'KURIR';
                 $dtSistem['source_id'] = $id_order;
+                $dtSistem['type'] = 'PUSAT';
                 DB::table('rb_wallet_users')->insert($dtSistem);
             }
     
@@ -723,14 +734,22 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $cekReff = DB::table('rb_konsumen as a')->select('a.referral_id')->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')->where('b.id_sopir', $id_sopir)->first();
                 if ($cekReff) {
                     if ($cekReff->referral_id != '') {
+                        $note = 'Komisi Refferal Kurir';
                         $dtReff['id_konsumen'] = $cekReff->referral_id;
                         $dtReff['amount'] = $komisiReff;
                         $dtReff['trx_type'] = 'credit';
-                        $dtReff['note'] = 'Komisi Refferal Kurir';
+                        $dtReff['note'] = $note;
                         $dtReff['created_at'] = date('Y-m-d H:i:s');
                         $dtReff['source'] = 'KURIR';
                         $dtReff['source_id'] = $id_order;
+                        $dtReff['type'] = 'REFFERAL';
                         DB::table('rb_wallet_users')->insert($dtReff);
+
+                        fcm_notify(
+                            $cekReff->referral_id,
+                            "Saldo Baru Masuk",
+                            "Jumlah: " . $komisiReff . " " . $note
+                        );
                     } else {
                         $kasihAdmin = true;
                     }
@@ -746,6 +765,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtReff['created_at'] = date('Y-m-d H:i:s');
                     $dtReff['source'] = 'KURIR';
                     $dtReff['source_id'] = $id_order;
+                    $dtReff['type'] = 'REFFERAL';
                     DB::table('rb_wallet_users')->insert($dtReff);
                 }
                 
@@ -764,8 +784,14 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
+                    $dtKoordinator['type'] = 'KOORDINATOR_KOTA';
                     DB::table('rb_wallet_users')->insert($dtKoordinator);
                         
+                    fcm_notify(
+                        $cekKoordinator->id_konsumen,
+                        "Saldo Baru Masuk",
+                        "Jumlah: " . $komisiKoordinator . " " . $dtKoordinator['note']
+                    );
                 } else {
                     $kasihAdmin = true;
                 }
@@ -778,6 +804,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
+                    $dtKoordinator['type'] = 'KOORDINATOR_KOTA';
                     DB::table('rb_wallet_users')->insert($dtKoordinator);
                 }
                 
@@ -796,8 +823,15 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
+                    $dtKoordinator['type'] = 'KOORDINATOR_KECAMATAN';
                     DB::table('rb_wallet_users')->insert($dtKoordinator);
-                        
+
+                    fcm_notify(
+                        $cekKoordinator->id_konsumen,
+                        "Saldo Baru Masuk",
+                        "Jumlah: " . $komisiKoordinatorKecamatan . " " . $dtKoordinator['note']
+                    );
+
                 } else {
                     $kasihAdmin = true;
                 }
@@ -810,6 +844,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
+                    $dtKoordinator['type'] = 'KOORDINATOR_KECAMATAN';
                     DB::table('rb_wallet_users')->insert($dtKoordinator);
                 }
                 
@@ -826,6 +861,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $dtKasCabang['created_at'] = date('Y-m-d H:i:s');
                 $dtKasCabang['source'] = 'KURIR';
                 $dtKasCabang['source_id'] = $id_order;
+                $dtKasCabang['type'] = 'CABANG';
                 DB::table('rb_wallet_users')->insert($dtKasCabang);
             }
     
@@ -843,7 +879,14 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtAgen['created_at'] = date('Y-m-d H:i:s');
                     $dtAgen['source'] = 'KURIR';
                     $dtAgen['source_id'] = $id_order;
+                    $dtAgen['type'] = 'AGEN';
                     DB::table('rb_wallet_users')->insert($dtAgen);
+
+                    fcm_notify(
+                        $cek_agen->id_agen,
+                        "Saldo Baru Masuk",
+                        "Jumlah: " . $komisiAgen . " " . $dtAgen['note']
+                    );
                 } else {
                     $kasihAdmin = true;
                 }
@@ -856,6 +899,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtAgen['created_at'] = date('Y-m-d H:i:s');
                     $dtAgen['source'] = 'KURIR';
                     $dtAgen['source_id'] = $id_order;
+                    $dtAgen['type'] = 'AGEN';
                     DB::table('rb_wallet_users')->insert($dtAgen);
                 }
             }

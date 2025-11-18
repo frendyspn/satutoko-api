@@ -152,6 +152,8 @@ Route::prefix('kurir')->group(function () {
         Route::post('/live-order/detail-order', [KurirController::class, 'getOrderDetail']);
         Route::post('/komisi', [KurirController::class, 'getKomisi']);
         Route::post('/admin-kurir', [KurirController::class, 'getPotonganAdmin']);
+
+        Route::post('/notifications', [KurirController::class, 'getNotifications']);
     });
 
 });
