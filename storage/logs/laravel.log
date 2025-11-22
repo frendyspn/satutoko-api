@@ -11662,3 +11662,3412 @@
   'date' => '2025-11-19',
   'type' => 'all',
 )  
+[2025-11-19 04:45:38] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-18',
+  'end_date' => '2025-11-18',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-19 13:39:33] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 13:39:33] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 13:39:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 13:39:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 17:07:56] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 17:07:56] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 17:07:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 17:08:07] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 17:08:07] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 17:08:08] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 17:08:08] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 17:08:09] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 17:08:09] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-19 17:08:13] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 17:08:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 17:08:28] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 17:08:30] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 17:08:38] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 23:45:36] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:45:36] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:46:05] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:46:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-19 23:46:09] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-19 23:53:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:53:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:53:25] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:53:25] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:54:18] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:54:18] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:59:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:59:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:59:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:59:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-19 23:59:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'all',
+)  
+[2025-11-20 00:05:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:05:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:10:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:10:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:15:53] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:15:53] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:16:33] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:16:33] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:16:35] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:16:35] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:16:57] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:16:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:16:57] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:16:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:18:28] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:18:28] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:18:28] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:18:28] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:20:19] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:20:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:20:19] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:20:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:21:09] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:21:09] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:21:09] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:21:09] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:21:46] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:21:46] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:21:46] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:21:46] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:22:27] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:22:27] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:26:27] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:26:27] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:28:35] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 00:32:07] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 00:33:48] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 00:33:52] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 00:33:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-18',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 00:35:37] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:35:37] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:35:39] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:35:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:37:51] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:37:51] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-20 00:37:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:37:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:38:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:38:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 00:38:05] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:38:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-20 00:38:24] local.INFO: array (
+  'id' => '95',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 00:38:24] local.INFO: array (
+  'id' => '95',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 00:38:44] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:38:44] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 00:38:46] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 00:38:46] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-18',
+  'type' => 'semua',
+)  
+[2025-11-20 00:38:56] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 00:39:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-16',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 00:39:13] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-16',
+  'end_date' => '2025-11-16',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 00:39:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 01:50:50] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 01:50:50] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 09:39:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 09:39:49] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 09:39:54] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 09:40:04] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-18',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '424',
+)  
+[2025-11-20 09:40:09] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '94',
+)  
+[2025-11-20 09:40:10] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '94',
+)  
+[2025-11-20 09:40:13] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 09:40:29] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-18',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '424',
+)  
+[2025-11-20 09:40:32] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '94',
+)  
+[2025-11-20 09:40:32] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '94',
+)  
+[2025-11-20 09:40:34] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 09:40:36] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-18',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '424',
+)  
+[2025-11-20 09:40:38] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '102',
+)  
+[2025-11-20 09:40:38] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '102',
+)  
+[2025-11-20 10:09:01] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:09:01] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 10:09:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:09:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 10:09:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 10:09:12] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 10:09:15] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '103',
+)  
+[2025-11-20 10:09:15] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '103',
+)  
+[2025-11-20 10:09:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '103',
+)  
+[2025-11-20 10:09:21] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 10:27:32] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:32] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 10:27:33] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:33] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 10:27:39] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:39] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:41] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:41] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-18',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:43] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:43] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:44] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:44] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-18',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:45] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:45] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-17',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:46] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:46] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-16',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:47] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:47] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-17',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:48] local.INFO: array (
+  0 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:48] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'pasca_order',
+)  
+[2025-11-20 10:27:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:49] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 10:27:50] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:27:50] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-18',
+  'type' => 'semua',
+)  
+[2025-11-20 10:28:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:28:00] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-17',
+  'type' => 'semua',
+)  
+[2025-11-20 10:28:01] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:28:01] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-16',
+  'type' => 'semua',
+)  
+[2025-11-20 10:28:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:28:03] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-18',
+  'type' => 'semua',
+)  
+[2025-11-20 10:28:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:28:04] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-20 10:28:07] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:28:07] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 10:28:17] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 10:29:41] local.INFO: disini  
+[2025-11-20 10:29:41] local.INFO: disini exist  
+[2025-11-20 10:29:41] local.INFO: 781  
+[2025-11-20 10:29:41] local.INFO: {"source":"LIVE_ORDER","tarif":"15000","id_agen":"424","id_pemesan":781,"alamat_jemput":"Alamat 1","titik_jemput":"RDC Center https:\/\/share.google\/o10uSoKr2ovazT3JH","alamat_antar":"Alamat 2","titik_antar":"https:\/\/share.google\/o10uSoKr2ovazT3JH","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-20 10:29:41"}  
+[2025-11-20 10:29:41] local.INFO: UDAH DISINI WEHH  
+[2025-11-20 10:29:41] local.INFO: {"source":"LIVE_ORDER","tarif":"15000","id_agen":"424","id_pemesan":781,"alamat_jemput":"Alamat 1","titik_jemput":"RDC Center https:\/\/share.google\/o10uSoKr2ovazT3JH","alamat_antar":"Alamat 2","titik_antar":"https:\/\/share.google\/o10uSoKr2ovazT3JH","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-20 10:29:41","kode_order":"176360938110","status":"SEARCH"}  
+[2025-11-20 10:29:50] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 10:29:53] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '104',
+)  
+[2025-11-20 10:29:53] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '104',
+)  
+[2025-11-20 10:30:16] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 10:30:17] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 10:30:30] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 10:30:37] local.INFO: Order pickup completed {"id_transaksi":"104","id_sopir":40,"jenis_layanan":"RIDE","foto_ambil_barang":null} 
+[2025-11-20 10:30:38] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 10:30:44] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 10:31:03] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '085220835877',
+  'search' => '104',
+)  
+[2025-11-20 10:31:05] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 10:31:09] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:31:09] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 10:31:15] local.INFO: array (
+  0 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:31:15] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'pasca_order',
+)  
+[2025-11-20 10:31:15] local.INFO: array (
+  0 => 'LIVE_ORDER',
+)  
+[2025-11-20 10:31:15] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'live_order',
+)  
+[2025-11-20 10:31:17] local.INFO: array (
+  0 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:31:17] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'pasca_order',
+)  
+[2025-11-20 10:31:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 10:31:23] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 11:23:22] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 11:23:22] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 11:23:24] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 11:23:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 11:23:35] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 11:23:41] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 11:23:45] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '103',
+)  
+[2025-11-20 11:23:45] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '103',
+)  
+[2025-11-20 11:23:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 11:24:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 11:24:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 11:24:21] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '95',
+)  
+[2025-11-20 11:24:22] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '95',
+)  
+[2025-11-20 11:24:29] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 11:24:35] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 11:24:45] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '89',
+)  
+[2025-11-20 11:24:45] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '89',
+)  
+[2025-11-20 11:25:53] local.INFO: array (
+  'id' => '89',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 11:25:53] local.INFO: array (
+  'id' => '89',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 11:25:56] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 11:26:01] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 11:26:04] local.INFO: array (
+  'id' => '103',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 11:26:04] local.INFO: array (
+  'id' => '103',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 11:26:08] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 11:26:15] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 11:26:15] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 11:26:18] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 15:42:24] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:42:24] local.INFO: array (
+  'no_hp' => '085353981777',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:43:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:43:23] local.INFO: array (
+  'no_hp' => '085353981777',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:45:38] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:45:38] local.INFO: array (
+  'no_hp' => '085353981777',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:45:44] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:45:44] local.INFO: array (
+  'no_hp' => '085353981777',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:45:46] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:45:46] local.INFO: array (
+  'no_hp' => '085353981777',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 15:46:12] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:46:12] local.INFO: array (
+  'no_hp' => '085353981777',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:46:13] local.INFO: array (
+  'no_hp' => '085353981777',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 15:47:00] local.INFO: disini  
+[2025-11-20 15:47:00] local.INFO: disini exist  
+[2025-11-20 15:47:00] local.INFO: 424  
+[2025-11-20 15:47:00] local.INFO: {"source":"LIVE_ORDER","tarif":"10000","id_agen":"781","id_pemesan":424,"alamat_jemput":"Tes 1","titik_jemput":"","alamat_antar":"Tes 2","titik_antar":"","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-20 15:47:00"}  
+[2025-11-20 15:47:00] local.INFO: UDAH DISINI WEHH  
+[2025-11-20 15:47:00] local.INFO: {"source":"LIVE_ORDER","tarif":"10000","id_agen":"781","id_pemesan":424,"alamat_jemput":"Tes 1","titik_jemput":"","alamat_antar":"Tes 2","titik_antar":"","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-20 15:47:00","kode_order":"176362842032","status":"SEARCH"}  
+[2025-11-20 15:47:02] local.INFO: array (
+  'no_hp' => '085353981777',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 15:47:26] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:47:26] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:47:28] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 15:47:28] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 15:47:31] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 15:47:31] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 15:47:40] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 17:15:39] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:15:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:15:40] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:15:40] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:22:36] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:22:36] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:22:36] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:22:36] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:22:41] local.INFO: array (
+  'id' => '362',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:22:41] local.INFO: array (
+  'id' => '362',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:22:42] local.INFO: array (
+  'id' => '362',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:22:42] local.INFO: array (
+  'id' => '362',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:27:59] local.INFO: array (
+  'id' => '362',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:28:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:28:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:28:05] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:28:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:28:11] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 17:29:01] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 17:29:08] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 17:31:36] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:31:36] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:31:37] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:31:37] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:44:12] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:44:12] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:44:14] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:44:14] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 17:45:58] local.INFO: array (
+  'id' => '101',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:45:58] local.INFO: array (
+  'id' => '101',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 17:51:18] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 17:51:18] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:06:31] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:06:31] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:06:31] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:06:31] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:06:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 18:06:51] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 18:06:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 18:07:06] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-09',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 18:07:08] local.INFO: array (
+  'id' => '101',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 18:07:09] local.INFO: array (
+  'id' => '101',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 18:07:10] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 18:10:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:10:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:11:01] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:11:01] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:11:16] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:11:16] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 18:11:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 18:11:37] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-16',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 18:11:39] local.INFO: array (
+  'id' => '101',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 18:11:39] local.INFO: array (
+  'id' => '101',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 18:11:53] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 18:32:43] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:32:43] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:32:43] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:32:43] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 18:32:47] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 18:32:47] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 18:32:50] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 19:19:27] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-16',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '537',
+)  
+[2025-11-20 19:37:56] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 19:37:56] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 19:37:57] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 19:37:57] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 19:38:19] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 19:38:19] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 19:38:35] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 19:38:35] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 19:38:38] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 19:38:40] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 19:38:40] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 19:38:45] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 19:38:45] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 19:38:53] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 19:38:53] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 19:58:55] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 19:58:55] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 19:58:57] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 19:58:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:00:58] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:00:58] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:15:39] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:15:39] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:15:39] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:15:39] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:15:51] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:15:51] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 20:16:02] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:16:02] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-19',
+  'type' => 'semua',
+)  
+[2025-11-20 20:16:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:16:03] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-18',
+  'type' => 'semua',
+)  
+[2025-11-20 20:16:04] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:16:04] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-17',
+  'type' => 'semua',
+)  
+[2025-11-20 20:16:05] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:16:05] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-16',
+  'type' => 'semua',
+)  
+[2025-11-20 20:17:58] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-01',
+  'end_date' => '2025-11-30',
+)  
+[2025-11-20 20:20:15] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:20:15] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:21:48] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:21:48] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:21:48] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:21:48] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:21:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:21:59] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:22:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:22:00] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:22:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:22:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 20:22:10] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:22:10] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-20 20:22:16] local.INFO: array (
+  0 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:22:16] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'pasca_order',
+)  
+[2025-11-20 20:22:19] local.INFO: array (
+  0 => 'LIVE_ORDER',
+)  
+[2025-11-20 20:22:19] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'live_order',
+)  
+[2025-11-20 20:22:25] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'service_type' => 'live_order',
+)  
+[2025-11-20 20:22:27] local.INFO: array (
+  0 => 'LIVE_ORDER',
+)  
+[2025-11-20 20:22:27] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-19',
+  'type' => 'live_order',
+)  
+[2025-11-20 20:22:27] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-19',
+  'end_date' => '2025-11-19',
+  'service_type' => 'live_order',
+)  
+[2025-11-20 20:22:28] local.INFO: array (
+  0 => 'LIVE_ORDER',
+)  
+[2025-11-20 20:22:28] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-18',
+  'type' => 'live_order',
+)  
+[2025-11-20 20:22:28] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-18',
+  'end_date' => '2025-11-18',
+  'service_type' => 'live_order',
+)  
+[2025-11-20 20:22:30] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-01',
+  'end_date' => '2025-11-30',
+  'service_type' => 'live_order',
+)  
+[2025-11-20 20:22:38] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:22:43] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:22:47] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:22:47] local.INFO: array (
+  'id' => '104',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:23:12] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:23:18] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:27:56] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:28:33] local.INFO: disini  
+[2025-11-20 20:28:33] local.INFO: disini exist  
+[2025-11-20 20:28:33] local.INFO: 809  
+[2025-11-20 20:28:33] local.INFO: {"source":"LIVE_ORDER","tarif":"20000","id_agen":"537","id_pemesan":809,"alamat_jemput":"Hsjsj shsjsjj","titik_jemput":"","alamat_antar":"Hjwjwnw sisksk","titik_antar":"","jenis_layanan":"SEND","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-20 20:28:33"}  
+[2025-11-20 20:28:33] local.INFO: UDAH DISINI WEHH  
+[2025-11-20 20:28:33] local.INFO: {"source":"LIVE_ORDER","tarif":"20000","id_agen":"537","id_pemesan":809,"alamat_jemput":"Hsjsj shsjsjj","titik_jemput":"","alamat_antar":"Hjwjwnw sisksk","titik_antar":"","jenis_layanan":"SEND","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-20 20:28:33","kode_order":"176364531340","status":"SEARCH"}  
+[2025-11-20 20:28:36] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:28:42] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:28:42] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:28:46] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:29:01] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:29:01] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:29:01] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:29:01] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:29:07] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:29:56] local.INFO: Order pickup completed {"id_transaksi":"106","id_sopir":36,"jenis_layanan":"SEND","foto_ambil_barang":"pickup_photos/pickup_106_1763645396.jpeg"} 
+[2025-11-20 20:29:57] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:30:24] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-20 20:30:32] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:30:32] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:30:58] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-20 20:30:58] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'all',
+)  
+[2025-11-20 20:31:53] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-20 20:32:07] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-12',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '424',
+)  
+[2025-11-20 20:32:11] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:32:12] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:32:28] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:32:28] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:32:41] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:35:41] local.INFO: Order pickup completed {"id_transaksi":"93","id_sopir":40,"jenis_layanan":"SEND","foto_ambil_barang":"pickup_photos/pickup_93_1763645741.jpeg"} 
+[2025-11-20 20:35:43] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-20 20:50:35] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-21 00:20:40] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 00:20:40] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 00:20:42] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 00:20:42] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 00:20:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 00:20:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-21 00:21:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-21 00:21:45] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-21 01:18:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 01:18:49] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 01:28:05] local.ERROR: Undefined array key "payload" {"exception":"[object] (ErrorException(code: 0): Undefined array key \"payload\" at /var/www/satutoko-api/app/helper.php:486)
+[stacktrace]
+#0 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(254): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/satutoko-api/app/helper.php(486): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()
+#2 /var/www/satutoko-api/app/Http/Controllers/Controller.php(35): fcm_topic()
+#3 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\Controller->testNotif()
+#4 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction()
+#5 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#6 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#7 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(799): Illuminate\\Routing\\Route->run()
+#8 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()
+#9 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#10 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#11 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#12 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest()
+#13 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter()
+#14 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle()
+#15 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#16 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(798): Illuminate\\Pipeline\\Pipeline->then()
+#17 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack()
+#18 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(741): Illuminate\\Routing\\Router->runRoute()
+#19 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute()
+#20 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#21 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}()
+#22 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#23 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#24 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#25 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#26 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#27 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#28 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#29 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle()
+#30 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#31 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#32 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#33 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#34 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#35 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#36 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#37 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#38 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#39 /var/www/satutoko-api/public/index.php(56): Illuminate\\Foundation\\Http\\Kernel->handle()
+#40 {main}
+"} 
+[2025-11-21 01:31:11] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 01:31:11] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 01:31:12] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 01:31:12] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 01:31:48] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 01:31:48] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 01:41:40] local.INFO: array (
+  'id' => '105',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 01:41:40] local.INFO: array (
+  'id' => '105',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:01:03] local.ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.city_name' in 'field list' (Connection: mysql, SQL: select `a`.*, `b`.`kota_id`, `b`.`city_name` from `kurir_order` as `a` left join `rb_konsumen` as `b` on `b`.`id_konsumen` = `a`.`id_agen` left join `tb_ro_cities` as `c` on `c`.`city_id` = `b`.`kota_id` where `a`.`id_transaksi` = 537 limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.city_name' in 'field list' (Connection: mysql, SQL: select `a`.*, `b`.`kota_id`, `b`.`city_name` from `kurir_order` as `a` left join `rb_konsumen` as `b` on `b`.`id_konsumen` = `a`.`id_agen` left join `tb_ro_cities` as `c` on `c`.`city_id` = `b`.`kota_id` where `a`.`id_transaksi` = 537 limit 1) at /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php:795)
+[stacktrace]
+#0 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(755): Illuminate\\Database\\Connection->runQueryCallback()
+#1 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(407): Illuminate\\Database\\Connection->run()
+#2 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2735): Illuminate\\Database\\Connection->select()
+#3 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2724): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3278): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2723): Illuminate\\Database\\Query\\Builder->onceWithColumns()
+#6 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Query\\Builder->get()
+#7 /var/www/satutoko-api/app/helper.php(505): Illuminate\\Database\\Query\\Builder->first()
+#8 /var/www/satutoko-api/app/Http/Controllers/Controller.php(31): fcm_topic_live_order()
+#9 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\Controller->testNotif()
+#10 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction()
+#11 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#12 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#13 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(799): Illuminate\\Routing\\Route->run()
+#14 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()
+#15 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#16 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#17 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#18 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest()
+#19 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter()
+#20 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle()
+#21 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#22 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(798): Illuminate\\Pipeline\\Pipeline->then()
+#23 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack()
+#24 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(741): Illuminate\\Routing\\Router->runRoute()
+#25 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute()
+#26 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#27 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}()
+#28 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#29 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#30 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#31 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#32 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#33 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#34 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#35 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle()
+#36 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#37 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#38 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#39 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#40 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#41 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#42 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#43 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#44 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#45 /var/www/satutoko-api/public/index.php(56): Illuminate\\Foundation\\Http\\Kernel->handle()
+#46 {main}
+
+[previous exception] [object] (PDOException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.city_name' in 'field list' at /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php:416)
+[stacktrace]
+#0 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(416): PDO->prepare()
+#1 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(788): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}()
+#2 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(755): Illuminate\\Database\\Connection->runQueryCallback()
+#3 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(407): Illuminate\\Database\\Connection->run()
+#4 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2735): Illuminate\\Database\\Connection->select()
+#5 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2724): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3278): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2723): Illuminate\\Database\\Query\\Builder->onceWithColumns()
+#8 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Query\\Builder->get()
+#9 /var/www/satutoko-api/app/helper.php(505): Illuminate\\Database\\Query\\Builder->first()
+#10 /var/www/satutoko-api/app/Http/Controllers/Controller.php(31): fcm_topic_live_order()
+#11 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\Controller->testNotif()
+#12 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction()
+#13 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#14 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#15 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(799): Illuminate\\Routing\\Route->run()
+#16 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()
+#17 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#18 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#19 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#20 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest()
+#21 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter()
+#22 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle()
+#23 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#24 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(798): Illuminate\\Pipeline\\Pipeline->then()
+#25 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack()
+#26 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(741): Illuminate\\Routing\\Router->runRoute()
+#27 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute()
+#28 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#29 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}()
+#30 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#31 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#32 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#33 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#34 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#35 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#36 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#37 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle()
+#38 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#39 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#40 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#41 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#42 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#43 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#44 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#45 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#46 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#47 /var/www/satutoko-api/public/index.php(56): Illuminate\\Foundation\\Http\\Kernel->handle()
+#48 {main}
+"} 
+[2025-11-21 02:01:26] local.ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.id_transaksi' in 'where clause' (Connection: mysql, SQL: select `a`.*, `b`.`kota_id`, `c`.`city_name` from `kurir_order` as `a` left join `rb_konsumen` as `b` on `b`.`id_konsumen` = `a`.`id_agen` left join `tb_ro_cities` as `c` on `c`.`city_id` = `b`.`kota_id` where `a`.`id_transaksi` = 537 limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.id_transaksi' in 'where clause' (Connection: mysql, SQL: select `a`.*, `b`.`kota_id`, `c`.`city_name` from `kurir_order` as `a` left join `rb_konsumen` as `b` on `b`.`id_konsumen` = `a`.`id_agen` left join `tb_ro_cities` as `c` on `c`.`city_id` = `b`.`kota_id` where `a`.`id_transaksi` = 537 limit 1) at /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php:795)
+[stacktrace]
+#0 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(755): Illuminate\\Database\\Connection->runQueryCallback()
+#1 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(407): Illuminate\\Database\\Connection->run()
+#2 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2735): Illuminate\\Database\\Connection->select()
+#3 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2724): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3278): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2723): Illuminate\\Database\\Query\\Builder->onceWithColumns()
+#6 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Query\\Builder->get()
+#7 /var/www/satutoko-api/app/helper.php(505): Illuminate\\Database\\Query\\Builder->first()
+#8 /var/www/satutoko-api/app/Http/Controllers/Controller.php(31): fcm_topic_live_order()
+#9 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\Controller->testNotif()
+#10 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction()
+#11 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#12 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#13 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(799): Illuminate\\Routing\\Route->run()
+#14 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()
+#15 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#16 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#17 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#18 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest()
+#19 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter()
+#20 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle()
+#21 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#22 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(798): Illuminate\\Pipeline\\Pipeline->then()
+#23 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack()
+#24 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(741): Illuminate\\Routing\\Router->runRoute()
+#25 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute()
+#26 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#27 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}()
+#28 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#29 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#30 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#31 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#32 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#33 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#34 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#35 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle()
+#36 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#37 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#38 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#39 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#40 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#41 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#42 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#43 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#44 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#45 /var/www/satutoko-api/public/index.php(56): Illuminate\\Foundation\\Http\\Kernel->handle()
+#46 {main}
+
+[previous exception] [object] (PDOException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.id_transaksi' in 'where clause' at /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php:416)
+[stacktrace]
+#0 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(416): PDO->prepare()
+#1 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(788): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}()
+#2 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(755): Illuminate\\Database\\Connection->runQueryCallback()
+#3 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Connection.php(407): Illuminate\\Database\\Connection->run()
+#4 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2735): Illuminate\\Database\\Connection->select()
+#5 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2724): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3278): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2723): Illuminate\\Database\\Query\\Builder->onceWithColumns()
+#8 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Query\\Builder->get()
+#9 /var/www/satutoko-api/app/helper.php(505): Illuminate\\Database\\Query\\Builder->first()
+#10 /var/www/satutoko-api/app/Http/Controllers/Controller.php(31): fcm_topic_live_order()
+#11 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\Controller->testNotif()
+#12 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction()
+#13 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#14 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#15 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(799): Illuminate\\Routing\\Route->run()
+#16 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()
+#17 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#18 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#19 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#20 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest()
+#21 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter()
+#22 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle()
+#23 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#24 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(798): Illuminate\\Pipeline\\Pipeline->then()
+#25 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack()
+#26 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(741): Illuminate\\Routing\\Router->runRoute()
+#27 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute()
+#28 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#29 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}()
+#30 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#31 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#32 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#33 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#34 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#35 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#36 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#37 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle()
+#38 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#39 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#40 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#41 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#42 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#43 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#44 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#45 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#46 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#47 /var/www/satutoko-api/public/index.php(56): Illuminate\\Foundation\\Http\\Kernel->handle()
+#48 {main}
+"} 
+[2025-11-21 02:06:15] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:06:15] local.INFO: array (
+  'id' => '106',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:06:59] local.INFO: array (
+  'id' => '103',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:06:59] local.INFO: array (
+  'id' => '103',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:09:51] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-21 02:14:19] local.INFO: disini  
+[2025-11-21 02:14:19] local.INFO: disini exist  
+[2025-11-21 02:14:19] local.INFO: 810  
+[2025-11-21 02:14:19] local.INFO: {"source":"LIVE_ORDER","tarif":"15000","id_agen":"537","id_pemesan":810,"alamat_jemput":"Hsjsj shdksk ajsjsj","titik_jemput":"https:\/\/maps.app.goo.gl\/Qb4sH4hgxCpujCJF7","alamat_antar":"Hsjsk sjsksk","titik_antar":"https:\/\/maps.app.goo.gl\/fvkCKcRRq44G97mk7","jenis_layanan":"FOOD","metode_pembayaran":"CASH","pemberi_barang":"Ayam goreng","tanggal_order":"2025-11-21 02:14:19"}  
+[2025-11-21 02:14:19] local.INFO: UDAH DISINI WEHH  
+[2025-11-21 02:14:19] local.INFO: {"source":"LIVE_ORDER","tarif":"15000","id_agen":"537","id_pemesan":810,"alamat_jemput":"Hsjsj shdksk ajsjsj","titik_jemput":"https:\/\/maps.app.goo.gl\/Qb4sH4hgxCpujCJF7","alamat_antar":"Hsjsk sjsksk","titik_antar":"https:\/\/maps.app.goo.gl\/fvkCKcRRq44G97mk7","jenis_layanan":"FOOD","metode_pembayaran":"CASH","pemberi_barang":"Ayam goreng","tanggal_order":"2025-11-21 02:14:19","kode_order":"176366605942","status":"SEARCH","id_penjualan":821}  
+[2025-11-21 02:14:28] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-21 02:14:30] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:14:30] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:31:10] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:31:38] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:31:38] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '176366605942',
+)  
+[2025-11-21 02:33:12] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:36:40] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '176366605942',
+)  
+[2025-11-21 02:36:40] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:38:06] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '176366605942',
+)  
+[2025-11-21 02:38:06] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:38:15] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '176366605942',
+)  
+[2025-11-21 02:38:15] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:38:23] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:38:41] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'id_konsumen' => '081340094756',
+  'search' => '176366605942',
+)  
+[2025-11-21 02:38:41] local.INFO: array (
+  'id' => '107',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 02:44:53] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-21 02:47:48] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:47:48] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:48:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:49:43] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:49:43] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:50:42] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:50:42] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:50:42] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:50:42] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:50:42] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:50:42] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:12] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:12] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:12] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:12] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:12] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:12] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:41] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:41] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:41] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:41] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:41] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:41] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:49] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:49] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:51:50] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:51:50] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:52:33] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:52:33] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:52:33] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:52:33] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:52:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:52:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:53:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:53:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:53:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:53:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 02:53:23] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 02:53:23] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 19:42:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-21 19:42:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-21',
+  'type' => 'all',
+)  
+[2025-11-21 19:43:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-21 19:43:11] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-01',
+  'end_date' => '2025-11-21',
+  'id_konsumen' => '537',
+)  
+[2025-11-21 19:43:15] local.INFO: array (
+  'id' => '86',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 19:43:15] local.INFO: array (
+  'id' => '86',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-21 19:43:20] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+)  
+[2025-11-22 05:29:29] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:29:29] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 05:29:29] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:29:29] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 05:30:19] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:30:19] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 05:30:52] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:30:52] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:31:38] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:31:38] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:31:54] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:31:54] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-21',
+  'type' => 'semua',
+)  
+[2025-11-22 05:31:57] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:31:57] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'semua',
+)  
+[2025-11-22 05:32:02] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:32:02] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-20',
+  'type' => 'semua',
+)  
+[2025-11-22 05:32:08] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:32:08] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-21',
+  'type' => 'semua',
+)  
+[2025-11-22 05:32:09] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-22 05:32:10] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+  'search' => '104',
+)  
+[2025-11-22 05:32:10] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+  'search' => '104',
+)  
+[2025-11-22 05:32:10] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'search' => '104',
+)  
+[2025-11-22 05:32:47] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:32:47] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:33:07] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:33:07] local.INFO: array (
+  'id' => '93',
+  'id_konsumen' => '085220835877',
+)  
+[2025-11-22 05:43:52] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+  'search' => '104',
+)  
+[2025-11-22 05:43:52] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-21',
+  'end_date' => '2025-11-21',
+  'search' => '104',
+)  
+[2025-11-22 05:43:53] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+  'search' => '104',
+)  
+[2025-11-22 05:44:01] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:44:01] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-21',
+  'type' => 'semua',
+)  
+[2025-11-22 05:44:01] local.INFO: array (
+  'no_hp' => '085220835877',
+  'start_date' => '2025-11-20',
+  'end_date' => '2025-11-20',
+)  
+[2025-11-22 05:44:16] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 05:44:16] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:18:37] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:18:37] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:18:38] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:18:38] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:32:02] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:32:02] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:32:44] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 07:43:16] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 07:43:16] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:43:16] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:43:17] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:43:17] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:43:24] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:43:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:43:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 07:43:24] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:43:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:49:13] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:49:13] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:49:15] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 07:49:15] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 07:49:16] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:00:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:01:26] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:03:08] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:03:11] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:06:50] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:12:20] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:13:04] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:13:22] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:14:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:19:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:19:35] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:22:07] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:26:28] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:27:05] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:28:54] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:30:41] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:30:46] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:32:54] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:33:16] local.INFO: disini  
+[2025-11-22 08:33:16] local.INFO: disini create  
+[2025-11-22 08:33:16] local.INFO: {"source":"LIVE_ORDER","tarif":"10000","id_agen":"537","id_pemesan":811,"alamat_jemput":"Bdjjdjd","titik_jemput":"","alamat_antar":"Gwjsbsvh","titik_antar":"","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-22 08:33:16"}  
+[2025-11-22 08:33:16] local.INFO: UDAH DISINI WEHH  
+[2025-11-22 08:33:16] local.INFO: {"source":"LIVE_ORDER","tarif":"10000","id_agen":"537","id_pemesan":811,"alamat_jemput":"Bdjjdjd","titik_jemput":"","alamat_antar":"Gwjsbsvh","titik_antar":"","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-22 08:33:16","kode_order":"176377519651","status":"SEARCH"}  
+[2025-11-22 08:33:20] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:33:37] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:33:56] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:34:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:37:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:37:43] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 08:40:02] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 08:40:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 08:40:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 08:40:03] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 08:40:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 08:44:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 08:47:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 08:49:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 08:50:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 08:52:46] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 08:59:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 08:59:59] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'semua',
+)  
+[2025-11-22 08:59:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 08:59:59] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'semua',
+)  
+[2025-11-22 08:59:59] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 08:59:59] local.INFO: array (
+  'no_hp' => '085220835877',
+  'date' => '2025-11-22',
+  'type' => 'semua',
+)  
+[2025-11-22 09:01:49] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:01:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:01:49] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:01:49] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:01:49] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:12:24] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:12:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:13:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:13:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:13:57] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:13:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:13:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:13:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:14:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:14:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:14:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:14:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:14:00] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:14:00] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:14:43] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:17:28] local.INFO: 0  
+[2025-11-22 09:17:28] local.ERROR: Illuminate\Log\LogManager::info(): Argument #2 ($context) must be of type array, int given, called in /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 353 {"exception":"[object] (TypeError(code: 0): Illuminate\\Log\\LogManager::info(): Argument #2 ($context) must be of type array, int given, called in /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 353 at /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:706)
+[stacktrace]
+#0 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(353): Illuminate\\Log\\LogManager->info()
+#1 /var/www/satutoko-api/app/Http/Controllers/V1/KurirController.php(2286): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#2 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\V1\\KurirController->saveTransaksi()
+#3 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction()
+#4 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch()
+#5 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#6 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(799): Illuminate\\Routing\\Route->run()
+#7 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()
+#8 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#9 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()
+#10 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#11 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest()
+#12 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter()
+#13 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle()
+#14 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#15 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(798): Illuminate\\Pipeline\\Pipeline->then()
+#16 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack()
+#17 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(741): Illuminate\\Routing\\Router->runRoute()
+#18 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Routing/Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute()
+#19 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch()
+#20 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}()
+#21 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#22 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#23 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()
+#24 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#25 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()
+#26 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()
+#27 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#28 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle()
+#29 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#30 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle()
+#31 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#32 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle()
+#33 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#34 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle()
+#35 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#36 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then()
+#37 /var/www/satutoko-api/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#38 /var/www/satutoko-api/public/index.php(56): Illuminate\\Foundation\\Http\\Kernel->handle()
+#39 {main}
+"} 
+[2025-11-22 09:18:23] local.INFO: 0  
+[2025-11-22 09:18:23] local.INFO: 537 || 809  
+[2025-11-22 09:18:27] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:20:55] local.INFO: 0  
+[2025-11-22 09:20:55] local.INFO: 537 || 804  
+[2025-11-22 09:20:57] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:21:57] local.INFO: 0  
+[2025-11-22 09:21:57] local.INFO: 537 || 804  
+[2025-11-22 09:21:59] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:23:54] local.INFO: 0  
+[2025-11-22 09:23:54] local.INFO: 537 || 804  
+[2025-11-22 09:23:56] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:25:37] local.INFO: 0  
+[2025-11-22 09:25:37] local.INFO: 537 || 804  
+[2025-11-22 09:25:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:42:51] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:42:51] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:42:51] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:42:51] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:42:58] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 09:44:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:44:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:44:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:44:34] local.INFO: array (
+  0 => 'LIVE_ORDER',
+  1 => 'MANUAL_KURIR',
+)  
+[2025-11-22 09:44:34] local.INFO: array (
+  'no_hp' => '081340094756',
+  'date' => '2025-11-22',
+  'type' => 'all',
+)  
+[2025-11-22 09:47:22] local.INFO: disini  
+[2025-11-22 09:47:22] local.INFO: disini create  
+[2025-11-22 09:47:22] local.INFO: {"source":"LIVE_ORDER","tarif":"5000","id_agen":"537","id_pemesan":812,"alamat_jemput":"Hsbsbbdne","titik_jemput":"","alamat_antar":"Gsgsvsg","titik_antar":"","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-22 09:47:22"}  
+[2025-11-22 09:47:22] local.INFO: UDAH DISINI WEHH  
+[2025-11-22 09:47:22] local.INFO: {"source":"LIVE_ORDER","tarif":"5000","id_agen":"537","id_pemesan":812,"alamat_jemput":"Hsbsbbdne","titik_jemput":"","alamat_antar":"Gsgsvsg","titik_antar":"","jenis_layanan":"RIDE","metode_pembayaran":"CASH","pemberi_barang":"","tanggal_order":"2025-11-22 09:47:22","kode_order":"17637796421","status":"SEARCH"}  
+[2025-11-22 09:47:22] local.INFO: NOT EXIST  
+[2025-11-22 09:47:22] local.INFO: INSERT  
+[2025-11-22 09:47:26] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '537',
+)  
+[2025-11-22 09:48:16] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 09:55:47] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '081340094756',
+  'search' => '176377833769',
+)  
+[2025-11-22 09:55:48] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 09:57:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 09:57:28] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 09:59:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '081340094756',
+  'search' => '176377833769',
+)  
+[2025-11-22 09:59:19] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 10:01:27] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 10:01:27] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '081340094756',
+  'search' => '176377833769',
+)  
+[2025-11-22 10:02:31] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 10:02:39] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+)  
+[2025-11-22 10:02:41] local.INFO: array (
+  'id' => '119',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-22 10:02:41] local.INFO: array (
+  'id' => '119',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-22 10:03:43] local.INFO: array (
+  'id' => '119',
+  'id_konsumen' => '081340094756',
+)  
+[2025-11-22 10:03:43] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '081340094756',
+  'search' => '17637796421',
+)  
+[2025-11-22 10:04:03] local.INFO: array (
+  'no_hp' => '081340094756',
+  'start_date' => '2025-11-22',
+  'end_date' => '2025-11-22',
+  'id_konsumen' => '081340094756',
+  'search' => '17637796421',
+)  
+[2025-11-22 10:04:04] local.INFO: array (
+  'id' => '119',
+  'id_konsumen' => '081340094756',
+)  

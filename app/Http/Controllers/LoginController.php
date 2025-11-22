@@ -228,8 +228,9 @@ class LoginController extends Controller
         
 
         $cek_user = DB::table('rb_konsumen as a')
-        ->select('a.*','b.agen', 'b.koordinator_kota', 'b.koordinator_kecamatan', 'b.foto_diri')
+        ->select('a.*','b.agen', 'b.koordinator_kota', 'b.koordinator_kecamatan', 'b.foto_diri', 'b.total_komisi', 'c.city_name')
         ->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')
+        ->leftJoin('tb_ro_cities as c', 'c.city_id', 'a.kota_id')
         ->where('a.no_hp', $req->username)
         ->where('otp', $req->otp)
         ->first();
@@ -263,11 +264,39 @@ class LoginController extends Controller
             $dt_result['foto_diri'] = $cek_user->foto_diri;
             $dt_result['foto'] = $cek_user->foto_diri;
             $dt_result['level'] = 'kurir';
+            $dt_result['total_komisi'] = $cek_user->total_komisi;
+            $dt_result['kota'] = $cek_user->city_name;
             exit(json_encode($dt_result));
 
         } else {
             http_response_code(404);
             exit(json_encode(['Message' => 'Kode OTP Salah']));
+        }
+
+        
+    }
+
+    public function kurirLogout(Request $req){
+        
+        $cek_user = DB::table('rb_konsumen as a')
+        ->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')
+        ->where('a.no_hp', $req->username)
+        ->first();
+        
+        header('Content-Type: application/json');
+        if ($cek_user) {
+            if ($cek_user->id_sopir == null) {
+                http_response_code(404);
+                exit(json_encode(['Message' => 'Belum Terdaftar Sebagai Kurir']));
+            }
+            $update['device_token'] = '';
+            DB::table('rb_konsumen')->where('no_hp', $req->username)->update($update);
+            
+            http_response_code(200);
+            exit(json_encode(['Message' => '']));
+        } else {
+            http_response_code(404);
+            exit(json_encode(['Message' => 'Nomor HP Tidak Terdaftar']));
         }
 
         

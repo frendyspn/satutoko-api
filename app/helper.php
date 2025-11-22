@@ -42,6 +42,8 @@ if (!function_exists('kirim_wa')) {
         } else {
             $api_key = 'SpGFIChfZ1u3AzTvXn8E6JhJ9xYz6dEecKIGTZ8JeUo8gmyF3xrQxYc';
         }
+
+        $secret = 'N1Lb1AZo';
         
         
         $num_key = '';
@@ -65,7 +67,7 @@ if (!function_exists('kirim_wa')) {
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS => http_build_query($data),
           CURLOPT_HTTPHEADER => array(
-            'Authorization: '.$api_key
+            'Authorization: '.$api_key.'.'.$secret
           ),
         ));
         
@@ -472,7 +474,71 @@ if (!function_exists('fcm_notify')) {
 if (!function_exists('fcm_topic')) {
     function fcm_topic($topic, $title, $body, $data = [])
     {
-        return app(FcmNotificationService::class)
+        $response = app(FcmNotificationService::class)
         ->sendToTopic($topic, $title, $body, $data);
+
+        // Simpan log ke database
+        DB::table('fcm_logs')->insert([
+            'id_konsumen' => 0,
+            'device_token' => $topic,
+            'title' => $title,
+            'body' => $body,
+            'data' => json_encode($response['payload']),
+            'response_status' => $response['status'],
+            'response_body' => json_encode($response['body']),
+            'success' => $response['success'],
+            'created_at' => now()
+        ]);
+
+        return $response;
+    }
+}
+
+if (!function_exists('fcm_topic_live_order')) {
+    function fcm_topic_live_order($id_transaksi)
+    {
+        $getTransaksi = DB::table('kurir_order as a')
+        ->select('a.*', 'b.kota_id', 'c.city_name')
+        ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_agen')
+        ->leftJoin('tb_ro_cities as c', 'c.city_id', 'b.kota_id')
+        ->where('a.id', $id_transaksi)
+        ->first();
+
+        // Validasi data
+        if (!$getTransaksi || $getTransaksi->kota_id <= 0) {
+            echo 'KOSONG';
+            return null;
+        }
+
+        
+            $topic = 'city_' . strtolower(str_replace(' ', '_', $getTransaksi->city_name));
+            $title = 'Transaksi Baru';
+            $body = "Ada order {$getTransaksi->jenis_layanan}, senilai {$getTransaksi->tarif}";
+            $data = [
+                "transaction_id" => (string) $id_transaksi,
+                "navigate_to" => "live-order"
+            ];
+
+
+            $response = app(FcmNotificationService::class)
+            ->sendToTopic($topic, $title, $body, $data);
+
+            // Simpan log ke database
+            DB::table('fcm_logs')->insert([
+                'id_konsumen' => 0,
+                'device_token' => $topic,
+                'title' => $title,
+                'body' => $body,
+                'data' => json_encode($response['payload']),
+                'response_status' => $response['status'],
+                'response_body' => json_encode($response['body']),
+                'success' => $response['success'],
+                'created_at' => now()
+            ]);
+
+            return $response;
+        
+
+        
     }
 }

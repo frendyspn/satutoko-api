@@ -17,16 +17,38 @@ class Controller extends BaseController
         // return sendNotif();
         // return notif_wa_otp('081340094756', '12345');
         // return notifOrderBaruWa();
-        $token = 537;
+        $token = 103;
 
-        $result = fcm_notify(
-            $token,
-            "Order Update",
-            "Pesanan Anda sedang diproses",
-            ["order_id" => "12345"]
-        );
+        // $result = fcm_notify(
+        //     $token,
+        //     "Order Update",
+        //     "Pesanan Anda sedang diproses",
+        //     ["order_id" => "12345"]
+        // );
 
-        return response()->json($result);
+        // return response()->json($result);
+
+        return fcm_topic_live_order($token);
+
+        // $getKota = DB::table('rb_konsumen as a')->select('a.kota_id', 'b.city_name')->leftJoin('tb_ro_cities as b', 'b.city_id', 'a.kota_id')->where('a.id_konsumen',$token)->first();
+        // if ($getKota && $getKota->kota_id > 0) {
+        //     $topic = 'city_' . strtolower(str_replace(' ', '_', $getKota->city_name));
+
+        //     $result = fcm_topic(
+        //         $topic,
+        //         "Order Baru",
+        //         "Ada order baru, siap di pickup",
+        //         [
+        //             "transaction_id" => "105",
+        //             "navigate_to" => "live-order"
+        //         ]
+        //     );
+
+        //     return response()->json($result);
+
+        //     // return app(\App\Services\FcmNotificationService::class)
+        //     //     ->sendToTopic($topic, $title, $body, $data);
+        // }
     }
 
 
@@ -709,6 +731,8 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
             $persenAgen = $this->getConfig('fee_kurir_agen');
     
             $dtKurir = DB::table('rb_sopir')->where('id_sopir', $id_sopir)->first();
+
+            $dtOrder = DB::table('kurir_order')->select('kode_order')->where('id',$id_order)->first();
             
             $kecamatanKurir = $dtKurir->kecamatan_id;
             $kotaKurir = $dtKurir->kota_id;
@@ -719,7 +743,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $dtSistem['id_konsumen'] = 0;
                 $dtSistem['amount'] = $komisiSistem;
                 $dtSistem['trx_type'] = 'credit';
-                $dtSistem['note'] = 'Komisi system kurir';
+                $dtSistem['note'] = 'Komisi pusat '.$dtOrder->kode_order;
                 $dtSistem['created_at'] = date('Y-m-d H:i:s');
                 $dtSistem['source'] = 'KURIR';
                 $dtSistem['source_id'] = $id_order;
@@ -734,7 +758,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $cekReff = DB::table('rb_konsumen as a')->select('a.referral_id')->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')->where('b.id_sopir', $id_sopir)->first();
                 if ($cekReff) {
                     if ($cekReff->referral_id != '') {
-                        $note = 'Komisi Refferal Kurir';
+                        $note = 'Komisi Refferal Kurir '.$dtOrder->kode_order;
                         $dtReff['id_konsumen'] = $cekReff->referral_id;
                         $dtReff['amount'] = $komisiReff;
                         $dtReff['trx_type'] = 'credit';
@@ -761,7 +785,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtReff['id_konsumen'] = 0;
                     $dtReff['amount'] = $komisiReff;
                     $dtReff['trx_type'] = 'credit';
-                    $dtReff['note'] = 'Komisi Refferal kurir';
+                    $dtReff['note'] = 'Komisi Refferal kurir '.$dtOrder->kode_order;
                     $dtReff['created_at'] = date('Y-m-d H:i:s');
                     $dtReff['source'] = 'KURIR';
                     $dtReff['source_id'] = $id_order;
@@ -780,7 +804,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
                     $dtKoordinator['amount'] = $komisiKoordinator;
                     $dtKoordinator['trx_type'] = 'credit';
-                    $dtKoordinator['note'] = 'Komisi Koordinator Kota Kurir';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kota Kurir '.$dtOrder->kode_order;
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
@@ -800,7 +824,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['id_konsumen'] = 0;
                     $dtKoordinator['amount'] = $komisiKoordinator;
                     $dtKoordinator['trx_type'] = 'credit';
-                    $dtKoordinator['note'] = 'Komisi Koordinator Kota kurir';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kota kurir '.$dtOrder->kode_order;
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
@@ -819,7 +843,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
                     $dtKoordinator['amount'] = $komisiKoordinatorKecamatan;
                     $dtKoordinator['trx_type'] = 'credit';
-                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan Kurir';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan Kurir '.$dtOrder->kode_order;
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
@@ -840,7 +864,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['id_konsumen'] = 0;
                     $dtKoordinator['amount'] = $komisiKoordinatorKecamatan;
                     $dtKoordinator['trx_type'] = 'credit';
-                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan kurir';
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan kurir '.$dtOrder->kode_order;
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
@@ -857,7 +881,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $dtKasCabang['id_konsumen'] = 0;
                 $dtKasCabang['amount'] = $komisiKasCabang;
                 $dtKasCabang['trx_type'] = 'credit';
-                $dtKasCabang['note'] = 'Komisi Cabang';
+                $dtKasCabang['note'] = 'Komisi Cabang '.$dtOrder->kode_order;
                 $dtKasCabang['created_at'] = date('Y-m-d H:i:s');
                 $dtKasCabang['source'] = 'KURIR';
                 $dtKasCabang['source_id'] = $id_order;
@@ -875,7 +899,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtAgen['id_konsumen'] = $cek_agen->id_agen;
                     $dtAgen['amount'] = $komisiAgen;
                     $dtAgen['trx_type'] = 'credit';
-                    $dtAgen['note'] = 'Komisi Agen Kurir';
+                    $dtAgen['note'] = 'Komisi Agen Kurir '.$dtOrder->kode_order;
                     $dtAgen['created_at'] = date('Y-m-d H:i:s');
                     $dtAgen['source'] = 'KURIR';
                     $dtAgen['source_id'] = $id_order;
@@ -895,7 +919,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtAgen['id_konsumen'] = 0;
                     $dtAgen['amount'] = $komisiAgen;
                     $dtAgen['trx_type'] = 'credit';
-                    $dtAgen['note'] = 'Komisi Agen kurir';
+                    $dtAgen['note'] = 'Komisi Agen kurir '.$dtOrder->kode_order;
                     $dtAgen['created_at'] = date('Y-m-d H:i:s');
                     $dtAgen['source'] = 'KURIR';
                     $dtAgen['source_id'] = $id_order;

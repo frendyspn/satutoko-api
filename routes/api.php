@@ -82,6 +82,7 @@ Route::prefix('v1')->group(function () {
 
 Route::prefix('kurir')->group(function () {
     Route::post('/login', [LoginController::class, 'kurirLoginOtp']);
+    Route::post('/logout', [LoginController::class, 'kurirLogout']);
     Route::post('/verifikasi_otp', [LoginController::class, 'kurirVerifOtp']);
 
     Route::prefix('register')->group(function () {
@@ -112,6 +113,7 @@ Route::prefix('kurir')->group(function () {
 
         Route::post('/list-agen', [KurirController::class, 'getAgens']);
         Route::post('/list-pelanggan', [KurirController::class, 'getPelanggan']);
+        Route::post('/list-favorite-pelanggan', [KurirController::class, 'getPelangganFavorite']);
 
         Route::post('/save-transaksi-manual', [KurirController::class, 'saveTransaksi']);
         Route::post('/approve-transaksi-manual', [KurirController::class, 'approveTransaksi']);

@@ -1453,6 +1453,93 @@ class KurirController extends Controller
         ]);
     }
 
+    public function getPelangganFavorite(Request $req)
+    {
+        $query = DB::table('rb_konsumen as b')
+            ->select('b.id_konsumen', 'b.nama_lengkap', 'b.no_hp')
+            ->leftJoin('rb_konsumen_favorite as c', 'c.id_konsumen', 'b.id_konsumen')
+            ->where('c.id_user', $req->id_konsumen);
+
+        // Filter pencarian berdasarkan nama_lengkap atau no_hp
+        $search = trim((string)$req->input('search'));
+        if (!empty($search) && $search != '') {
+            // helper to remove non-digits
+            $onlyDigits = preg_replace('/[^0-9]/', '', $search);
+
+            $query->where(function($q) use ($search, $onlyDigits) {
+                // always allow name search
+                $q->where('b.nama_lengkap', 'like', '%' . $search . '%');
+
+                // if search contains digits, treat it as phone and add multiple variants
+                if ($onlyDigits !== '') {
+                    // canonical forms to match: +62..., 62..., 08..., and digits-only (no leading +)
+                    $variants = [];
+
+                    // digits-only as stored (could be 08123... or 628123... or +628123...)
+                    $digits = $onlyDigits;
+
+                    // if starts with 62 (e.g. 62812...)
+                    if (strpos($digits, '62') === 0) {
+                        // as +62...
+                        $variants[] = '+' . $digits;
+                        // as 62...
+                        $variants[] = $digits;
+                        // as 08... (replace leading 62 with 0)
+                        $variants[] = '0' . substr($digits, 2);
+                    } elseif (strpos($digits, '0') === 0) {
+                        // already starts with 0 => 08...
+                        $variants[] = $digits;
+                        // also possible without leading 0 (e.g. 8...)
+                        if (strpos($digits, '08') === 0) {
+                            $variants[] = ltrim($digits, '0');
+                        }
+                        // also with +62 variant
+                        if (strpos($digits, '08') === 0) {
+                            $variants[] = '+62' . substr($digits, 1);
+                            $variants[] = '62' . substr($digits, 1);
+                        }
+                    } elseif (strpos($digits, '8') === 0) {
+                        // starts with 8 e.g. 8123... => 08123..., +628123..., 628123...
+                        $variants[] = '0' . $digits;
+                        $variants[] = '+62' . $digits;
+                        $variants[] = '62' . $digits;
+                    } else {
+                        // fallback: try partial matches
+                        $variants[] = $digits;
+                    }
+
+                    // make variants unique
+                    $variants = array_values(array_unique($variants));
+
+                    // add where clauses for each variant (exact or LIKE)
+                    foreach ($variants as $v) {
+                        $q->orWhere('b.no_hp', 'like', '%' . $v . '%');
+                    }
+                } else {
+                    // if not digits, still allow searching name only (already added)
+                }
+            });
+        }
+
+        $pelanggan = $query->orderBy('b.nama_lengkap')->get();
+
+        // convert foto paths to full URLs when present
+        $pelanggan->transform(function($item) {
+            if (!empty($item->foto)) {
+                $item->foto = $this->urlForStoragePath($item->foto);
+            }
+            return $item;
+        });
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'data' => $pelanggan,
+            'message' => 'Daftar pelanggan berhasil diambil',
+            'total' => $pelanggan->count()
+        ]);
+    }
+
     /**
      * Convert a storage path (like /storage/uploads/...) or relative path to a full URL
      * 
@@ -2159,7 +2246,9 @@ class KurirController extends Controller
                 'id_agen' => $req->agen_kurir,
                 'id_pemesan' => $id_pemesan,
                 'alamat_jemput' => $req->alamat_penjemputan,
+                'titik_jemput' => $req->titik_jemput,
                 'alamat_antar' => $req->alamat_tujuan,
+                'titik_antar' => $req->titik_antar,
                 'jenis_layanan' => $req->nama_layanan,
                 'metode_pembayaran' => 'CASH',
                 'pemberi_barang' => $req->nama_toko ?? '',
@@ -2193,8 +2282,42 @@ class KurirController extends Controller
                     $dtInsert['status'] = 'PENDING';
                 }
                 
+                Log::info($req->is_favorite);
+                Log::info($getKurir->id_konsumen .' || '. $id_pemesan);
                 
                 $id_transaksi = DB::table('kurir_order')->insertGetId($dtInsert);
+
+                if ($req->is_favorite) {
+                    $cekExist = DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->first();
+                        
+                    if ($cekExist) {
+                        Log::info('EXIST');
+                        if ($req->is_favorite == false) {
+                            Log::info('HAPUS FAVORITE');
+                            DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->delete();
+                        } else {
+                            Log::info('EXIST NOT ACTION');
+                        }
+                    } else {
+                        Log::info('NOT EXIST');
+                        if ($req->is_favorite == true) {
+                            Log::info('INSERT');
+                            DB::table('rb_konsumen_favorite')
+                            ->insert([
+                                'id_user' => $getKurir->id_konsumen,
+                                'id_konsumen' => $id_pemesan
+                            ]);
+                        } else {
+                            Log::info('NOT EXIST NO ACTION');
+                        }
+                    }
+                } else {
+                    $cekExist = DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->first();
+                    if($cekExist){
+                        DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->delete();
+                    }
+                    
+                }
 
                 if ($getKurir->agen == 1) {
                     
@@ -2420,7 +2543,9 @@ class KurirController extends Controller
         $query = DB::table('kurir_order as a')
             ->leftJoin('rb_konsumen as p', 'p.id_konsumen', 'a.id_pemesan')
             ->leftJoin('rb_sopir as s', 's.id_sopir', 'a.id_sopir')
-            ->select('a.*', 's.id_konsumen as id_kurir', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
+            ->leftJoin('rb_konsumen as p_agent', 'p_agent.id_konsumen', 'a.id_agen')
+            ->leftJoin('rb_konsumen as pk', 'pk.id_konsumen', 's.id_konsumen')
+            ->select('a.*', 's.id_konsumen as id_kurir', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan', 'p_agent.nama_lengkap as nama_agen', 'p_agent.no_hp as no_hp_agen', 'pk.nama_lengkap as nama_kurir', 'pk.no_hp as no_hp_kurir');
 
         // only manual kurir entries and belonging to this agent
         $query->whereIn('a.source', $type)
@@ -2803,8 +2928,10 @@ class KurirController extends Controller
 
         $query = DB::table('kurir_order as a')
             ->leftJoin('rb_konsumen as p', 'p.id_konsumen', 'a.id_pemesan')
+            ->leftJoin('rb_konsumen as p_agent', 'p_agent.id_konsumen', 'a.id_agen')
             ->leftJoin('rb_sopir as s', 's.id_sopir', 'a.id_sopir')
-            ->select('a.*', 's.id_konsumen as id_kurir', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan');
+            ->leftJoin('rb_konsumen as pk', 'pk.id_konsumen', 's.id_konsumen')
+            ->select('a.*', 's.id_konsumen as id_kurir', 'p.nama_lengkap as nama_pemesan', 'p.no_hp as no_hp_pemesan', 'p_agent.nama_lengkap as nama_agen', 'p_agent.no_hp as no_hp_agen', 'pk.nama_lengkap as nama_kurir', 'pk.no_hp as no_hp_kurir');
 
         if ($req->id) {
             $query->where('a.id', $req->id);
@@ -3083,8 +3210,40 @@ class KurirController extends Controller
                 Log::info('UDAH DISINI WEHH');
                 Log::info(json_encode($dtInsert));
                 $id_transaksi = DB::table('kurir_order')->insertGetId($dtInsert);
-                
 
+                if ($req->is_favorite) {
+                    $cekExist = DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->first();
+                        
+                    if ($cekExist) {
+                        Log::info('EXIST');
+                        if ($req->is_favorite == false) {
+                            Log::info('HAPUS FAVORITE');
+                            DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->delete();
+                        } else {
+                            Log::info('EXIST NOT ACTION');
+                        }
+                    } else {
+                        Log::info('NOT EXIST');
+                        if ($req->is_favorite == true) {
+                            Log::info('INSERT');
+                            DB::table('rb_konsumen_favorite')
+                            ->insert([
+                                'id_user' => $getKurir->id_konsumen,
+                                'id_konsumen' => $id_pemesan
+                            ]);
+                        } else {
+                            Log::info('NOT EXIST NO ACTION');
+                        }
+                    }
+                } else {
+                    $cekExist = DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->first();
+                    if($cekExist){
+                        DB::table('rb_konsumen_favorite')->where('id_user',$getKurir->id_konsumen)->where('id_konsumen', $id_pemesan)->delete();
+                    }
+                    
+                }
+                
+                fcm_topic_live_order($id_transaksi);
                 
 
                 // if ($getKurir->agen == 1) {
@@ -3263,6 +3422,24 @@ class KurirController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
+        
+        // Find transaction (check both Transaksi and TransaksiManual tables)
+            $transaksi = DB::table('kurir_order')->where('id', $req->id_transaksi)->first();
+
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaksi tidak ditemukan'
+                ], 404);
+            }
+
+        // Check if transaction is in PICKUP status
+            if (strtoupper($transaksi->status) !== 'SEARCH') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaksi sudah tidak tersedia'
+                ], 400);
+            }
 
         try {
             DB::beginTransaction();
@@ -3884,10 +4061,11 @@ class KurirController extends Controller
     {
         $id = $req->id_transaksi;
         $transaction_detail = DB::table('kurir_order as a')
-                ->select('a.*', 'b.nama_lengkap as nama_sopir', 'b.no_hp as no_hp_sopir', 'b.id_konsumen as id_kurir', 'c.nama_lengkap as nama_pelanggan', 'c.no_hp as no_hp_pelanggan')
+                ->select('a.*', 'b.nama_lengkap as nama_sopir', 'b.no_hp as no_hp_sopir', 'b.id_konsumen as id_kurir', 'c.nama_lengkap as nama_pelanggan', 'c.no_hp as no_hp_pelanggan', 'e.nama_lengkap as nama_agen', 'e.no_hp as no_hp_agen')
                 ->leftJoin('rb_sopir as d','d.id_sopir','a.id_sopir')
                 ->leftJoin('rb_konsumen as b','b.id_konsumen','d.id_konsumen')
                 ->leftJoin('rb_konsumen as c','c.id_konsumen','a.id_pemesan')
+                ->leftJoin('rb_konsumen as e','e.id_konsumen','a.id_agen')
                 ->where('a.id', $id)
                 ->first();
 

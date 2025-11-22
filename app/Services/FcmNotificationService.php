@@ -76,6 +76,11 @@ class FcmNotificationService
 
         $response = Http::withToken($accessToken)->post($url, $payload);
 
-        return $response->json();
+        return [
+            'success' => $response->successful(),
+            'status' => $response->status(),
+            'body'   => $response->json(),
+            'payload'   => $payload,
+        ];
     }
 }
