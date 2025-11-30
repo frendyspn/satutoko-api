@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use DB;
 use App;
 use Illuminate\Http\Request;
+use Log;
 
 class Controller extends BaseController
 {
@@ -732,9 +733,9 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
     
             $dtKurir = DB::table('rb_sopir')->where('id_sopir', $id_sopir)->first();
 
-            $dtOrder = DB::table('kurir_order')->select('kode_order')->where('id',$id_order)->first();
-            
-            $kecamatanKurir = $dtKurir->kecamatan_id;
+            $dtOrder = DB::table('kurir_order')->select('kode_order','id_pemesan')->where('id',$id_order)->first();
+            Log::info(json_encode($dtOrder));
+            $koordinatorKurir = $dtKurir->id_koordinator;
             $kotaKurir = $dtKurir->kota_id;
     
             /* Karena kurir sudah dipotong */
@@ -755,10 +756,10 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $komisiReff = $komisi * ($persenReff/100);
                 $kasihAdmin = false;
     
-                $cekReff = DB::table('rb_konsumen as a')->select('a.referral_id')->leftJoin('rb_sopir as b', 'b.id_konsumen', 'a.id_konsumen')->where('b.id_sopir', $id_sopir)->first();
+                $cekReff = DB::table('rb_konsumen as a')->select('a.referral_id')->where('a.id_konsumen', $dtOrder->id_pemesan)->first();
                 if ($cekReff) {
                     if ($cekReff->referral_id != '') {
-                        $note = 'Komisi Refferal Kurir '.$dtOrder->kode_order;
+                        $note = 'Komisi Refferal '.$dtOrder->kode_order;
                         $dtReff['id_konsumen'] = $cekReff->referral_id;
                         $dtReff['amount'] = $komisiReff;
                         $dtReff['trx_type'] = 'credit';
@@ -785,7 +786,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtReff['id_konsumen'] = 0;
                     $dtReff['amount'] = $komisiReff;
                     $dtReff['trx_type'] = 'credit';
-                    $dtReff['note'] = 'Komisi Refferal kurir '.$dtOrder->kode_order;
+                    $dtReff['note'] = 'Komisi Refferal '.$dtOrder->kode_order;
                     $dtReff['created_at'] = date('Y-m-d H:i:s');
                     $dtReff['source'] = 'KURIR';
                     $dtReff['source_id'] = $id_order;
@@ -799,7 +800,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $komisiKoordinator = $komisi * ($persenKoordinator/100);
                 $kasihAdmin = false;
     
-                $cekKoordinator = DB::table('rb_sopir')->where('kota_id', $kotaKurir)->where('koordinator_kota', '1')->first();
+                $cekKoordinator = DB::table('rb_sopir_koordinator_kota')->where('id_kota', $kotaKurir)->first();
                 if ($cekKoordinator) {
                     $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
                     $dtKoordinator['amount'] = $komisiKoordinator;
@@ -834,16 +835,16 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 
             }
     
-            if ($persenKoordinatorKecamatan > 0 && $kecamatanKurir > 0) {
+            if ($persenKoordinatorKecamatan > 0 && $koordinatorKurir > 0) {
                 $komisiKoordinatorKecamatan = $komisi * ($persenKoordinatorKecamatan/100);
                 $kasihAdmin = false;
     
-                $cekKoordinator = DB::table('rb_sopir')->where('kecamatan_id', $kecamatanKurir)->where('koordinator_kecamatan', '1')->first();
+                $cekKoordinator = DB::table('rb_sopir')->where('id_sopir', $koordinatorKurir)->where('koordinator_kecamatan', '1')->first();
                 if ($cekKoordinator) {
                     $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
                     $dtKoordinator['amount'] = $komisiKoordinatorKecamatan;
                     $dtKoordinator['trx_type'] = 'credit';
-                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan Kurir '.$dtOrder->kode_order;
+                    $dtKoordinator['note'] = 'Komisi Koordinator Kurir '.$dtOrder->kode_order;
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;
@@ -864,7 +865,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['id_konsumen'] = 0;
                     $dtKoordinator['amount'] = $komisiKoordinatorKecamatan;
                     $dtKoordinator['trx_type'] = 'credit';
-                    $dtKoordinator['note'] = 'Komisi Koordinator Kecamatan kurir '.$dtOrder->kode_order;
+                    $dtKoordinator['note'] = 'Komisi Koordinator kurir '.$dtOrder->kode_order;
                     $dtKoordinator['created_at'] = date('Y-m-d H:i:s');
                     $dtKoordinator['source'] = 'KURIR';
                     $dtKoordinator['source_id'] = $id_order;

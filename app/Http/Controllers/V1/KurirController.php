@@ -79,7 +79,7 @@ class KurirController extends Controller
 
     public function updateKelengkapanData(Request $req)
     {
-        
+        Log::info($req->all());
         // Validate required fields
         $validator = \Validator::make($req->all(), [
             'no_hp' => 'required',
@@ -109,7 +109,7 @@ class KurirController extends Controller
             http_response_code(404);
             return response()->json([
                 'success' => false,
-                'message' => 'No HP tidak ditemukan di rb_konsumen'
+                'message' => 'Mohon refresh halaman ini'
             ], 404);
         }
 
@@ -613,6 +613,7 @@ class KurirController extends Controller
             $dt_update['otp_expired'] = $newTime;
             DB::table('otp_register')->insert($dt_update);
         }
+        notif_wa_otp($req->no_hp, $otp);
         
         header('Content-Type: application/json');
         return response()->json([
@@ -2206,7 +2207,7 @@ class KurirController extends Controller
 
         try {
             DB::beginTransaction();
-
+            Log::info($req->all());
             $id_pemesan = null;
 
             // Handle pelanggan
@@ -2238,7 +2239,7 @@ class KurirController extends Controller
             } else {
                 $id_pemesan = $pemesan->id_konsumen;
             }
-
+            
             // Prepare data transaksi
             $dtInsert = [
                 'source' => 'MANUAL_KURIR',
@@ -2342,7 +2343,7 @@ class KurirController extends Controller
                         ["order_id" => $id_transaksi]
                     );
                     
-                    notifKonsumenFinishOrder($id_transaksi);
+                    // notifKonsumenFinishOrder($id_transaksi);
                 } else {
                     // notifAgenNewOrder($id_transaksi);
                     fcm_notify(
@@ -2447,7 +2448,7 @@ class KurirController extends Controller
                     // Bagi komisi
                     $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $req->id_sopir, $req->id_transaksi);
 
-                    notifKonsumenFinishOrder($req->id_transaksi);
+                    // notifKonsumenFinishOrder($req->id_transaksi);
                     
                     if ($bagiKomisi) {
                         DB::commit();
@@ -4080,10 +4081,13 @@ class KurirController extends Controller
     public function getKomisi(Request $req)
     {
         $id = $req->id_transaksi;
+        $getTransaksi = DB::table('kurir_order as a')->select('b.id_konsumen')->leftJoin('rb_sopir as b','b.id_sopir','a.id_sopir')->where('a.id',$id)->first();
+
         $transaction_detail = DB::table('rb_wallet_users as a')
                 ->select('a.*', 'b.nama_lengkap')
                 ->leftJoin('rb_konsumen as b','b.id_konsumen','a.id_konsumen')
                 ->where('a.source_id', $id)
+                ->where('a.id_konsumen', $getTransaksi->id_konsumen)
                 ->where('a.source', 'KURIR')
                 ->where('a.trx_type', 'credit')
                 ->get();
