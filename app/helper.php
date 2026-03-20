@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\FcmNotificationService;
+use Log;
 
 if (!function_exists('kirim_wa')) {
     function kirim_wa($user_no_hp, $pesan, $sts = 1)
@@ -446,6 +447,7 @@ if (!function_exists('logApi')) {
 if (!function_exists('fcm_notify')) {
     function fcm_notify($id_konsumen, $title, $body, $data = [])
     {
+        Log::info($data);
         $konsumen = DB::table('rb_konsumen')->where('id_konsumen',$id_konsumen)->first();
         if(!$konsumen){
             return;

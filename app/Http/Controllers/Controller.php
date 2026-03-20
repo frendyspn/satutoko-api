@@ -14,11 +14,27 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function testNotif(){
+    public function testNotif($id){
         // return sendNotif();
         // return notif_wa_otp('081340094756', '12345');
         // return notifOrderBaruWa();
-        $token = 103;
+        $getTransaksi = DB::table('kurir_order as a')
+        ->select('a.*')
+        ->where('a.kode_order', $id)
+        ->first();
+
+        $token = $getTransaksi->id;
+        $data = [
+            'transaction_id' => (string) $token,
+            'navigate_to' => 'live-order'
+        ];
+
+        fcm_notify(
+            $token,
+            "Perlu Verifikasi",
+            "Halo kak  silahkan cek ada transaksi yang perlu diverifikasi",
+            $data
+        );
 
         // $result = fcm_notify(
         //     $token,
@@ -770,10 +786,17 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                         $dtReff['type'] = 'REFFERAL';
                         DB::table('rb_wallet_users')->insert($dtReff);
 
+                        $token = $id_order;
+                        $dataNotif = [
+                            'transaction_id' => (string) $token,
+                            'navigate_to' => 'live-order'
+                        ];
+
                         fcm_notify(
                             $cekReff->referral_id,
                             "Saldo Baru Masuk",
-                            "Jumlah: " . $komisiReff . " " . $note
+                            "Jumlah: " . $komisiReff . " " . $note,
+                            $dataNotif
                         );
                     } else {
                         $kasihAdmin = true;
@@ -800,7 +823,7 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                 $komisiKoordinator = $komisi * ($persenKoordinator/100);
                 $kasihAdmin = false;
     
-                $cekKoordinator = DB::table('rb_sopir_koordinator_kota')->where('id_kota', $kotaKurir)->first();
+                $cekKoordinator = DB::table('rb_sopir_koordinator_kota as a')->leftJoin('rb_sopir as b', 'a.id_sopir', '=', 'b.id_sopir')->where('a.id_kota', $kotaKurir)->first();
                 if ($cekKoordinator) {
                     $dtKoordinator['id_konsumen'] = $cekKoordinator->id_konsumen;
                     $dtKoordinator['amount'] = $komisiKoordinator;
@@ -811,11 +834,18 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['source_id'] = $id_order;
                     $dtKoordinator['type'] = 'KOORDINATOR_KOTA';
                     DB::table('rb_wallet_users')->insert($dtKoordinator);
-                        
+                    
+                    $token = $id_order;
+                    $dataNotif = [
+                        'transaction_id' => (string) $token,
+                        'navigate_to' => 'live-order'
+                    ];
+
                     fcm_notify(
                         $cekKoordinator->id_konsumen,
                         "Saldo Baru Masuk",
-                        "Jumlah: " . $komisiKoordinator . " " . $dtKoordinator['note']
+                        "Jumlah: " . $komisiKoordinator . " " . $dtKoordinator['note'],
+                        $dataNotif
                     );
                 } else {
                     $kasihAdmin = true;
@@ -851,10 +881,17 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtKoordinator['type'] = 'KOORDINATOR_KECAMATAN';
                     DB::table('rb_wallet_users')->insert($dtKoordinator);
 
+                    $token = $id_order;
+                    $dataNotif = [
+                        'transaction_id' => (string) $token,
+                        'navigate_to' => 'live-order'
+                    ];
+
                     fcm_notify(
                         $cekKoordinator->id_konsumen,
                         "Saldo Baru Masuk",
-                        "Jumlah: " . $komisiKoordinatorKecamatan . " " . $dtKoordinator['note']
+                        "Jumlah: " . $komisiKoordinatorKecamatan . " " . $dtKoordinator['note'],
+                        $dataNotif
                     );
 
                 } else {
@@ -907,10 +944,17 @@ Info lebih lanjut silakan cek di member area rebahandapatcuan.com
                     $dtAgen['type'] = 'AGEN';
                     DB::table('rb_wallet_users')->insert($dtAgen);
 
+                    $token = $id_order;
+                    $dataNotif = [
+                        'transaction_id' => (string) $token,
+                        'navigate_to' => 'live-order'
+                    ];
+                    
                     fcm_notify(
                         $cek_agen->id_agen,
                         "Saldo Baru Masuk",
-                        "Jumlah: " . $komisiAgen . " " . $dtAgen['note']
+                        "Jumlah: " . $komisiAgen . " " . $dtAgen['note'],
+                        $dataNotif
                     );
                 } else {
                     $kasihAdmin = true;

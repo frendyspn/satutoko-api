@@ -5,6 +5,9 @@ namespace App\Http\Controllers\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use DB;
 use Log;
 
@@ -914,6 +917,7 @@ class KurirController extends Controller
         // Build update array (follow provided structure but avoid overwriting password unless requested)
         $dtKonsumen = [
             'referral_id' => null,
+            'is_show' => 0,
         ];
 
 
@@ -1372,7 +1376,7 @@ class KurirController extends Controller
     public function getPelanggan(Request $req)
     {
         $query = DB::table('rb_konsumen as b')
-            ->select('b.id_konsumen', 'b.nama_lengkap', 'b.no_hp');
+            ->select('b.id_konsumen', 'b.nama_lengkap', 'b.no_hp', 'b.alamat_lengkap');
 
         // Filter pencarian berdasarkan nama_lengkap atau no_hp
         $search = trim((string)$req->input('search'));
@@ -1686,6 +1690,11 @@ class KurirController extends Controller
                 ], 409);
             }
 
+            $upline = DB::table('rb_konsumen')->where('id_konsumen', $req->referral_id)->first();
+            $provinsi_id = $upline->provinsi_id ?? '0';
+            $kota_id = $upline->kota_id ?? '0';
+            $kecamatan_id = $upline->kecamatan_id ?? '0';
+
             $dtKonsumen = [
                 'username' => $cleanNoHp,
                 // generate a random password and hash it
@@ -1696,9 +1705,9 @@ class KurirController extends Controller
                 'tanggal_lahir' => date('Y-m-d'),
                 'tempat_lahir' => '-',
                 'alamat_lengkap' => $req->alamat_lengkap,
-                'kecamatan_id' => '0',
-                'kota_id' => '0',
-                'provinsi_id' => '0',
+                'kecamatan_id' => $kecamatan_id,
+                'kota_id' => $kota_id,
+                'provinsi_id' => $provinsi_id,
                 'no_hp' => $cleanNoHp,
                 'foto' => '-',
                 'tanggal_daftar' => date('Y-m-d'),
@@ -1727,6 +1736,106 @@ class KurirController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+
+
+    public function bulkAddDownline(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'contacts' => 'required|array|min:1',
+            'contacts.*.id_kurir' => 'required|integer',
+            'contacts.*.nama_lengkap' => 'required|string|max:255',
+            'contacts.*.no_hp' => 'required|string|max:20',
+            'contacts.*.alamat_lengkap' => 'nullable|string|max:500',
+        ]);
+
+        if ($validator->fails()) {
+            header('Content-Type: application/json');
+            http_response_code(422);
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $contacts = $req->input('contacts');
+        $successfully_added = 0;
+        $failed_count = 0;
+        $errors = [];
+
+        $upline = DB::table('rb_konsumen')->where('id_konsumen', $contacts[0]['id_kurir'])->first();
+        $provinsi_id = $upline->provinsi_id ?? '0';
+        $kota_id = $upline->kota_id ?? '0';
+        $kecamatan_id = $upline->kecamatan_id ?? '0';
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($contacts as $index => $contactData) {
+                try {
+                    $cleanNoHp = $this->cleanPhoneNumber($contactData['no_hp']);
+                    
+                    $existing = DB::table('rb_konsumen')->where('no_hp', $cleanNoHp)->first();
+                    if ($existing) {
+                        if($existing->is_show == 0){
+                            DB::table('rb_konsumen')->where('id_konsumen', $existing->id_konsumen)->update(['is_show' => 1]);
+                        }
+                        $failed_count++;
+                        $errors[] = "Baris " . ($index + 1) . ": {$contactData['nama_lengkap']} - No HP sudah terdaftar";
+                        continue;
+                    }
+
+                    DB::table('rb_konsumen')->insert([
+                        'username' => $cleanNoHp,
+                        'password' => Hash::make(rand(10000000, 99999999)),
+                        'nama_lengkap' => $contactData['nama_lengkap'],
+                        'email' => '-',
+                        'jenis_kelamin' => 'Laki-laki',
+                        'tanggal_lahir' => date('Y-m-d'),
+                        'tempat_lahir' => '-',
+                        'alamat_lengkap' => $contactData['alamat_lengkap'] ?? '-',
+                        'kecamatan_id' => $kecamatan_id,
+                        'kota_id' => $kota_id,
+                        'provinsi_id' => $provinsi_id,
+                        'no_hp' => $cleanNoHp,
+                        'foto' => '-',
+                        'tanggal_daftar' => date('Y-m-d'),
+                        'token' => 'N',
+                        'referral_id' => $contactData['id_kurir'],
+                        'verifikasi' => 'N',
+                    ]);
+
+                    $successfully_added++;
+                } catch (\Exception $e) {
+                    $failed_count++;
+                    $errors[] = "Baris " . ($index + 1) . ": {$contactData['nama_lengkap']} - {$e->getMessage()}";
+                }
+            }
+
+            DB::commit();
+
+            header('Content-Type: application/json');
+            return response()->json([
+                'success' => true,
+                'message' => "Import selesai: {$successfully_added} berhasil, {$failed_count} gagal",
+                'data' => [
+                    'successfully_added' => $successfully_added,
+                    'failed_count' => $failed_count,
+                    'errors' => $errors,
+                ],
+            ], 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            header('Content-Type: application/json');
+            http_response_code(500);
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan saat mengimport: ' . $e->getMessage(),
             ], 500);
         }
     }
@@ -2034,6 +2143,85 @@ class KurirController extends Controller
             ]
         ]);
     }
+
+
+    public function getOrdersCustom(Request $request)
+    {
+        $no_hp = $request->input('no_hp');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        if ($request->input('type') == 'pasca_order') {
+            $type = ['MANUAL_KURIR'];
+        } else if ($request->input('type') == 'live_order') {
+            $type = ['LIVE_ORDER'];
+        } else {
+            $type = ['LIVE_ORDER', 'MANUAL_KURIR'];
+        }
+        
+        $firstDay = date('Y-m-d', strtotime($startDate));
+        $lastDay = date('Y-m-d', strtotime($endDate));
+        // Data untuk bar chart (daily in month)
+        $ordersDaily = $this->getOrders($no_hp, 'custom', $firstDay, $type, $lastDay, null);
+        // Data untuk pie chart jenis order (full month)
+        
+        $jenisOrder = $this->getJenisOrderRange($no_hp, $firstDay, $lastDay, $type);
+        
+        // Format untuk chart
+        $labels = [];
+        $dataOrders = [];
+        $dataPendapatan = [];
+        
+        // Calculate number of days between start and end date
+        $start = new \DateTime($firstDay);
+        $end = new \DateTime($lastDay);
+        $interval = $start->diff($end);
+        $daysInRange = $interval->days + 1;
+        Log::info("Custom Range: {$firstDay} to {$lastDay}, Days in range: {$daysInRange}");
+        
+        // Loop through each day in the range
+        for ($i = 0; $i < $daysInRange; $i++) {
+            $currentDate = clone $start;
+            $currentDate->modify("+{$i} days");
+            $tanggal = $currentDate->format('Y-m-d');
+            
+            // Add label as date (format: d/m or full date)
+            $labels[] = $currentDate->format('d/m');
+            
+            // Find data for this date
+            $found = $ordersDaily->firstWhere('tanggal', $tanggal);
+            
+            $dataOrders[] = $found ? (int)$found->total_order : 0;
+            $dataPendapatan[] = $found ? (int)$found->total_pendapatan : 0;
+        }
+        
+        // Format data pie chart
+        $jenisOrderFormatted = $this->formatJenisOrderForPieChart($jenisOrder);
+        Log::info('Custom Range Orders', [
+            'no_hp' => $no_hp,
+            'start_date' => $firstDay,
+            'end_date' => $lastDay,
+            'labels' => $labels,
+            'data_orders' => $dataOrders,
+            'data_pendapatan' => $dataPendapatan,
+            'jenis_order' => $jenisOrderFormatted
+        ]);
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'orders' => [
+                    'labels' => $labels,
+                    'datasets' => [['data' => $dataOrders]]
+                ],
+                'pendapatan' => [
+                    'labels' => $labels,
+                    'datasets' => [['data' => $dataPendapatan]]
+                ],
+                'jenis_order' => $jenisOrderFormatted,
+                'catatan' => $request->all(),
+            ]
+        ]);
+    }
     
     // Helper method untuk get orders hourly/monthly
     private function getOrders($no_hp, $mode, $date = null, $type = ['LIVE_ORDER','MANUAL_KURIR'], $year = null, $month = null)
@@ -2063,6 +2251,15 @@ class KurirController extends Controller
             ])
             ->whereYear('a.tanggal_order', $year)
             ->whereMonth('a.tanggal_order', $month)
+            ->groupBy(DB::raw('DATE(a.tanggal_order)'))
+            ->orderBy('tanggal', 'asc');
+        } elseif ($mode === 'custom') {
+            $query->select([
+                DB::raw('DATE(a.tanggal_order) as tanggal'),
+                DB::raw('COUNT(*) as total_order'),
+                DB::raw('SUM(a.tarif) as total_pendapatan'),
+            ])
+            ->whereBetween(DB::raw('DATE(a.tanggal_order)'), [$date, $year])
             ->groupBy(DB::raw('DATE(a.tanggal_order)'))
             ->orderBy('tanggal', 'asc');
         }
@@ -2184,7 +2381,7 @@ class KurirController extends Controller
 
         // Get kurir data from no_hp
         $getKurir = DB::table('rb_sopir as a')
-            ->select('a.*')
+            ->select('a.*','b.nama_lengkap')
             ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_konsumen')
             ->where('b.no_hp', $req->no_hp)
             ->first();
@@ -2199,11 +2396,44 @@ class KurirController extends Controller
         }
 
         // Hitung potongan komisi
-        if ($getKurir->total_komisi != 0) {
-            $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
-        } else {
-            $potonganKomisi = $req->biaya_antar * ($this->getConfig('fee_kurir_total') / 100);
-        }
+        // if ($getKurir->total_komisi != 0) {
+        //     $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+        // } else {
+        //     $potonganKomisi = $req->biaya_antar * ($this->getConfig('fee_kurir_total') / 100);
+        // }
+
+            $reffKonsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp_pelanggan ?? $req->no_hp)->first()->referral_id ?? '';
+            if ($getKurir->type_kurir == 'khusus') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_khusus_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_khusus') / 100);
+                    }
+                }
+            } else if ($getKurir->type_kurir == 'inti') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_inti_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_inti') / 100);
+                    }
+                }
+            } else {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_umum_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_umum') / 100);
+                    }
+                }
+            }
 
         try {
             DB::beginTransaction();
@@ -2211,7 +2441,7 @@ class KurirController extends Controller
             $id_pemesan = null;
 
             // Handle pelanggan
-            $pemesan = DB::table('rb_konsumen')->where('no_hp', $req->no_hp_pelanggan)->first();
+            $pemesan = DB::table('rb_konsumen')->where('no_hp', $req->no_hp_pelanggan ?? $req->no_hp)->first();
             
             if (!$pemesan && $req->btn_simpan == 'create') {
                 // Buat pelanggan baru
@@ -2335,22 +2565,28 @@ class KurirController extends Controller
 
                     // Bagi komisi
                     $bagiKomisi = $this->pembagianKomisiKurir($potonganKomisi, $getKurir->id_sopir, $id_transaksi);
-
-                    fcm_notify(
-                        $req->agen_kurir,
-                        "Perlu Verifikasi",
-                        "Halo kak  silahkan cek ada transaksi yang perlu diverifikasi",
-                        ["order_id" => $id_transaksi]
-                    );
+                    // $dtNavigate = [
+                    //     'transaction_id' => (string) $id_transaksi,
+                    //     'navigate_to' => 'live-order'
+                    // ];
+                    // fcm_notify(
+                    //     $req->agen_kurir,
+                    //     "Perlu Verifikasi",
+                    //     "Halo kak  silahkan cek ada transaksi yang perlu diverifikasi",
+                    //     $dtNavigate
+                    // );
                     
                     // notifKonsumenFinishOrder($id_transaksi);
                 } else {
-                    // notifAgenNewOrder($id_transaksi);
+                    $dtNavigate = [
+                        'transaction_id' => (string) $id_transaksi,
+                        'navigate_to' => 'live-order'
+                    ];
                     fcm_notify(
                         $req->agen_kurir,
                         "Perlu Verifikasi",
                         "Halo kak ".$getKurir->nama_lengkap.", silahkan cek ada transaksi yang perlu diverifikasi",
-                        ["order_id" => $id_transaksi]
+                        $dtNavigate
                     );
                 }
 
@@ -2413,7 +2649,7 @@ class KurirController extends Controller
                     DB::table('kurir_order')->where('id', $req->id_transaksi)->update($dtInsert);
 
                     $getKurirOrang = DB::table('rb_sopir as a')
-                        ->select('a.*')
+                        ->select('a.*', 'b.id_konsumen')
                         ->leftJoin('rb_konsumen as b', 'b.id_konsumen', 'a.id_konsumen')
                         ->where('a.id_sopir', $req->id_sopir)
                         ->first();
@@ -2628,8 +2864,8 @@ class KurirController extends Controller
             ->leftJoin('rb_konsumen as s', 's.id_konsumen', 'a.id_pemesan')
             ->select('a.*');
 
-        $query->where('a.source', 'MANUAL_KURIR')
-              ->where('a.id_pemesan', $konsumen->id_konsumen);
+        // $query->where('a.source', 'MANUAL_KURIR')
+              $query->where('a.id_pemesan', $konsumen->id_konsumen);
 
         if ($req->filled('status')) {
             $query->where('a.status', $req->status);
@@ -2702,6 +2938,107 @@ class KurirController extends Controller
         $downline = DB::table('rb_konsumen')
             ->where('referral_id', $req->id_konsumen)
             ->get();
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'data' => $downline,
+            'message' => 'Data downline berhasil diambil',
+            'total' => $downline->count()
+        ]);
+    }
+
+    public function searchKonsumen(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'keyword' => 'required|string',
+        ]);
+
+        $id_konsumen = $req->id_konsumen;
+
+        Log::info('Search Konsumen', $req->all());
+
+        if ($validator->fails()) {
+            header('Content-Type: application/json');
+            http_response_code(422);
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $query = $req->keyword;
+        $results = DB::table('rb_konsumen as a')
+            ->select('a.*', 'c.koordinator_kota', 'c.koordinator_kecamatan')
+            // ->leftJoin('rb_konsumen as b', 'b.kota_id', 'a.kota_id')
+            ->leftJoin('rb_konsumen as b', function($join) use ($id_konsumen) {
+                $join->where('b.id_konsumen', $id_konsumen);
+            })
+            ->leftJoin('rb_sopir as c', 'c.id_konsumen', 'b.id_konsumen')
+            ->where('a.is_show', '1')
+            ->where('a.nama_lengkap', 'like', "%$query%")
+            ->orWhere('a.no_hp', 'like', "%$query%")
+            ->get();
+
+            
+
+        foreach ($results as $row) {
+            $row->allow_edit = ($row->referral_id == $id_konsumen) ? true : (($row->koordinator_kota == 1) ? true : (($row->koordinator_kecamatan == 1) ? true : false));
+            $row->allow_delete = ($row->referral_id == $id_konsumen) ? true : (($row->koordinator_kota == 1) ? true : (($row->koordinator_kecamatan == 1) ? true : false));
+            $row->is_downline = ($row->referral_id == $id_konsumen) ? true : false;
+        }
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success' => true,
+            'data' => $results,
+            'message' => 'Pencarian konsumen berhasil',
+            'total' => $results->count()
+        ]);
+    }
+
+    public function getUserCity(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'id_konsumen' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            header('Content-Type: application/json');
+            http_response_code(422);
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $downlineCity = DB::table('rb_konsumen as a')
+            ->select('a.*', 'c.koordinator_kota', 'c.koordinator_kecamatan')
+            ->leftJoin('rb_konsumen as b', 'b.kota_id', 'a.kota_id')
+            ->leftJoin('rb_sopir as c', 'c.id_konsumen', 'b.id_konsumen')
+            ->where('a.is_show', '1')
+            ->where('a.referral_id', '!=', $req->id_konsumen)
+            ->where('b.id_konsumen', $req->id_konsumen)
+            ->where('a.id_konsumen', '!=', $req->id_konsumen);
+        
+        $downlineRefferal = DB::table('rb_konsumen as a')
+            ->select('a.*', 'c.koordinator_kota', 'c.koordinator_kecamatan')
+            ->leftJoin('rb_sopir as c', 'c.id_konsumen', 'a.id_konsumen')
+            ->where('a.is_show', '1')
+            ->where('a.referral_id', $req->id_konsumen);
+
+        $downline = $downlineCity->union($downlineRefferal)
+            ->distinct('id_konsumen')
+            ->orderBy('nama_lengkap', 'asc')
+            ->get();
+        
+        foreach ($downline as $row) {
+            $row->allow_edit = ($row->referral_id == $req->id_konsumen) ? true : (($row->koordinator_kota == 1) ? true : (($row->koordinator_kecamatan == 1) ? true : false));
+            $row->allow_delete = ($row->referral_id == $req->id_konsumen) ? true : (($row->koordinator_kota == 1) ? true : (($row->koordinator_kecamatan == 1) ? true : false));
+            $row->is_downline = ($row->referral_id == $req->id_konsumen) ? true : false;
+        }
 
         header('Content-Type: application/json');
         return response()->json([
@@ -3059,11 +3396,48 @@ class KurirController extends Controller
         }
 
         // Hitung potongan komisi
-        if ($getKurir->total_komisi != 0) {
-            $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
-        } else {
-            $potonganKomisi = $req->biaya_antar * ($this->getConfig('fee_kurir_total') / 100);
-        }
+        // if ($getKurir->total_komisi != 0) {
+        //     $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+        // } else {
+        //     $potonganKomisi = $req->biaya_antar * ($this->getConfig('fee_kurir_total') / 100);
+        // }
+
+            $reffKonsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp_pelanggan ?? $req->no_hp_pelanggan_baru)->first()->referral_id ?? '';
+            if ($getKurir->type_kurir == 'khusus') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_khusus_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_khusus') / 100);
+                    }
+                }
+            } else if ($getKurir->type_kurir == 'inti') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_inti_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_inti') / 100);
+                    }
+                }
+            } else {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_umum_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_umum') / 100);
+                    }
+                }
+            }
+
+        
+
+        
 
         try {
             DB::beginTransaction();
@@ -3071,7 +3445,7 @@ class KurirController extends Controller
             $id_pemesan = null;
 
             // Handle pelanggan
-            $pemesan = DB::table('rb_konsumen')->where('id_konsumen', $req->no_hp_pelanggan)->first();
+            $pemesan = DB::table('rb_konsumen')->where('no_hp', $req->no_hp_pelanggan_baru)->first();
             Log::info('disini');
             if (!$pemesan && $req->btn_simpan == 'create') {
                 // Buat pelanggan baru
@@ -3569,11 +3943,44 @@ class KurirController extends Controller
         }
 
         // Hitung potongan komisi
-        if ($getKurir->total_komisi != 0) {
-            $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
-        } else {
-            $potonganKomisi = $req->biaya_antar * ($this->getConfig('fee_kurir_total') / 100);
-        }
+        // if ($getKurir->total_komisi != 0) {
+        //     $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+        // } else {
+        //     $potonganKomisi = $req->biaya_antar * ($this->getConfig('fee_kurir_total') / 100);
+        // }
+
+            $reffKonsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp_pelanggan )->first()->referral_id ?? '';
+            if ($getKurir->type_kurir == 'khusus') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_khusus_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_khusus') / 100);
+                    }
+                }
+            } else if ($getKurir->type_kurir == 'inti') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_inti_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_inti') / 100);
+                    }
+                }
+            } else {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_umum_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $req->biaya_antar * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $req->biaya_antar * ($this->getConfig('potongan_kurir_umum') / 100);
+                    }
+                }
+            }
 
         $id_pemesan = $getOrder->id_pemesan;
         if ($req->id_pemesan) {
@@ -3727,6 +4134,7 @@ class KurirController extends Controller
 
     public function getPenjualan(Request $req)
     {
+        Log::info($req->all());
         $id = $req->id_penjualan;
         $transaction_detail = DB::table('rb_penjualan_detail')
                ->select(
@@ -4013,11 +4421,45 @@ class KurirController extends Controller
             // You can implement real-time updates here
 
             // Hitung potongan komisi
-            if ($getKurir->total_komisi != 0) {
-                $potonganKomisi = $transaksi->tarif * ($getKurir->total_komisi / 100);
+            // if ($getKurir->total_komisi != 0) {
+            //     $potonganKomisi = $transaksi->tarif * ($getKurir->total_komisi / 100);
+            // } else {
+            //     $potonganKomisi = $transaksi->tarif * ($this->getConfig('fee_kurir_total') / 100);
+            // }
+
+            $reffKonsumen = DB::table('rb_konsumen')->where('id_konsumen', $transaksi->id_pemesan)->first()->referral_id ?? '';
+            if ($getKurir->type_kurir == 'khusus') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $transaksi->tarif * ($this->getConfig('potongan_kurir_khusus_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $transaksi->tarif * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $transaksi->tarif * ($this->getConfig('potongan_kurir_khusus') / 100);
+                    }
+                }
+            } else if ($getKurir->type_kurir == 'inti') {
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $transaksi->tarif * ($this->getConfig('potongan_kurir_inti_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $transaksi->tarif * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $transaksi->tarif * ($this->getConfig('potongan_kurir_inti') / 100);
+                    }
+                }
             } else {
-                $potonganKomisi = $transaksi->tarif * ($this->getConfig('fee_kurir_total') / 100);
+                if($reffKonsumen == $getKurir->id_konsumen){
+                    $potonganKomisi = $transaksi->tarif * ($this->getConfig('potongan_kurir_umum_refferal') / 100);
+                } else {
+                    if($getKurir->total_komisi != 0){
+                        $potonganKomisi = $transaksi->tarif * ($getKurir->total_komisi / 100);
+                    } else {
+                        $potonganKomisi = $transaksi->tarif * ($this->getConfig('potongan_kurir_umum') / 100);
+                    }
+                }
             }
+            
 
 
             DB::table('rb_wallet_users')->insert([
@@ -4060,6 +4502,7 @@ class KurirController extends Controller
 
     public function getOrderDetail(Request $req)
     {
+        Log::info('Get order detail request', ['request' => $req->all()]);
         $id = $req->id_transaksi;
         $transaction_detail = DB::table('kurir_order as a')
                 ->select('a.*', 'b.nama_lengkap as nama_sopir', 'b.no_hp as no_hp_sopir', 'b.id_konsumen as id_kurir', 'c.nama_lengkap as nama_pelanggan', 'c.no_hp as no_hp_pelanggan', 'e.nama_lengkap as nama_agen', 'e.no_hp as no_hp_agen')
@@ -4080,18 +4523,29 @@ class KurirController extends Controller
 
     public function getKomisi(Request $req)
     {
+        Log::info('Get komisi request', ['request' => $req->all()]);
         $id = $req->id_transaksi;
+        $user = DB::table('rb_konsumen')->where('id_konsumen', $req->id_user)->first();
         $getTransaksi = DB::table('kurir_order as a')->select('b.id_konsumen')->leftJoin('rb_sopir as b','b.id_sopir','a.id_sopir')->where('a.id',$id)->first();
 
         $transaction_detail = DB::table('rb_wallet_users as a')
                 ->select('a.*', 'b.nama_lengkap')
                 ->leftJoin('rb_konsumen as b','b.id_konsumen','a.id_konsumen')
-                ->where('a.source_id', $id)
-                ->where('a.id_konsumen', $getTransaksi->id_konsumen)
-                ->where('a.source', 'KURIR')
+                ->where('a.source_id', $id);
+        
+        if($user->superadmin != 1){
+            $transaction_detail = $transaction_detail->where('a.id_konsumen', $user->id_konsumen);
+        };
+                
+                
+        $transaction_detail = $transaction_detail->where('a.source', 'KURIR')
                 ->where('a.trx_type', 'credit')
                 ->get();
 
+        foreach ($transaction_detail as $row) {
+            $row->superadmin_view = $user->superadmin == 1 ? true : false;
+        }
+        
         header('Content-Type: application/json');
         return response()->json([
             'success' => true,
@@ -4142,6 +4596,726 @@ class KurirController extends Controller
             'message' => 'Sukses',
             'data' => ['notifications' => $notifications, 'notifications_new' => $notifications_new]
         ]);
+    }
+
+    public function updateStatusOnline(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp'      => 'required',
+            'is_online'  => 'required|in:0,1',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors'  => $validator->errors(),
+            ], 422);
+        }
+
+        $konsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp)->first();
+
+        if (!$konsumen) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kurir tidak ditemukan',
+            ], 404);
+        }
+
+        $sopir = DB::table('rb_sopir')->where('id_konsumen', $konsumen->id_konsumen)->first();
+
+        if (!$sopir) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data sopir tidak ditemukan',
+            ], 404);
+        }
+
+        $isOnline   = (int) $req->is_online;
+        $statusText = $isOnline ? 'online' : 'offline';
+        $now        = now();
+
+        DB::beginTransaction();
+        try {
+            // Update status di rb_sopir
+            $updateData = ['is_online' => $isOnline];
+            if ($isOnline) {
+                $updateData['last_online_at'] = $now;
+            }
+            DB::table('rb_sopir')
+                ->where('id_sopir', $sopir->id_sopir)
+                ->update($updateData);
+
+            // Catat log perubahan status
+            DB::table('rb_sopir_online_log')->insert([
+                'id_sopir'  => $sopir->id_sopir,
+                'status'    => $statusText,
+                'logged_at' => $now,
+            ]);
+
+            DB::commit();
+
+            // Notifikasi konfirmasi perubahan status (jangan gagalkan proses utama jika notif error)
+            try {
+                $title = $isOnline ? 'Status Online Aktif' : 'Status Online Nonaktif';
+                $body = $isOnline
+                    ? 'Anda sudah online dan siap menerima order.'
+                    : 'Anda sudah offline dan tidak menerima order baru.';
+
+                fcm_notify($konsumen->id_konsumen, $title, $body, [
+                    'type' => 'status_online_update',
+                    'is_online' => (string) $isOnline,
+                    'status' => $statusText,
+                    'updated_at' => (string) $now,
+                ]);
+            } catch (\Exception $notifEx) {
+                Log::warning('FCM notify updateStatusOnline gagal: ' . $notifEx->getMessage(), [
+                    'id_konsumen' => $konsumen->id_konsumen,
+                    'id_sopir' => $sopir->id_sopir,
+                    'is_online' => $isOnline,
+                ]);
+            }
+
+            header('Content-Type: application/json');
+            return response()->json([
+                'success'   => true,
+                'message'   => 'Status berhasil diperbarui',
+                'is_online' => $isOnline,
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal memperbarui status: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Rekap total waktu online sopir.
+     *
+     * Query params:
+     *   - no_hp   : wajib
+     *   - mode    : 'daily' | 'monthly' | 'all'  (default: 'daily')
+     *   - date    : untuk 'daily'   format Y-m-d  (default: hari ini)
+     *   - year    : untuk 'monthly' format Y      (default: tahun ini)
+     *   - month   : untuk 'monthly' format m      (default: bulan ini)
+     *
+     * Response:
+     *   - total_seconds  : total detik online
+     *   - total_minutes  : total menit online
+     *   - total_hours    : total jam online (dibulatkan 2 desimal)
+     *   - detail         : array pasangan [online → offline] (hanya untuk daily & monthly)
+     */
+    public function getRekapOnline(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp' => 'required',
+            'mode'  => 'nullable|in:daily,monthly,all',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors'  => $validator->errors(),
+            ], 422);
+        }
+
+        $konsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp)->first();
+        if (!$konsumen) {
+            return response()->json(['success' => false, 'message' => 'Kurir tidak ditemukan'], 404);
+        }
+
+        $sopir = DB::table('rb_sopir')->where('id_konsumen', $konsumen->id_konsumen)->first();
+        if (!$sopir) {
+            return response()->json(['success' => false, 'message' => 'Data sopir tidak ditemukan'], 404);
+        }
+
+        $mode  = $req->input('mode', 'daily');
+        $query = DB::table('rb_sopir_online_log')
+                    ->where('id_sopir', $sopir->id_sopir)
+                    ->orderBy('logged_at', 'asc');
+
+        if ($mode === 'daily') {
+            $date = $req->input('date', now()->format('Y-m-d'));
+            $query->whereDate('logged_at', $date);
+        } elseif ($mode === 'monthly') {
+            $year  = $req->input('year',  now()->format('Y'));
+            $month = $req->input('month', now()->format('m'));
+            $query->whereYear('logged_at', $year)->whereMonth('logged_at', $month);
+        }
+        // 'all' → no extra filter
+
+        $logs = $query->get(['status', 'logged_at']);
+
+        // Hitung total detik online dengan mencocokkan pasangan online → offline
+        $totalSeconds = 0;
+        $detail       = [];
+        $pendingOnline = null;
+
+        foreach ($logs as $log) {
+            if ($log->status === 'online') {
+                $pendingOnline = $log->logged_at;
+            } elseif ($log->status === 'offline' && $pendingOnline !== null) {
+                $start    = strtotime($pendingOnline);
+                $end      = strtotime($log->logged_at);
+                $duration = max(0, $end - $start);
+                $totalSeconds += $duration;
+
+                $detail[] = [
+                    'online_at'        => $pendingOnline,
+                    'offline_at'       => $log->logged_at,
+                    'duration_seconds' => $duration,
+                    'duration_minutes' => round($duration / 60, 1),
+                ];
+
+                $pendingOnline = null;
+            }
+        }
+
+        // Kalau masih online sampai sekarang (tidak ada pasangan offline), hitung sampai now
+        if ($pendingOnline !== null) {
+            $start    = strtotime($pendingOnline);
+            $end      = time();
+            $duration = max(0, $end - $start);
+            $totalSeconds += $duration;
+
+            $detail[] = [
+                'online_at'        => $pendingOnline,
+                'offline_at'       => null, // masih online
+                'duration_seconds' => $duration,
+                'duration_minutes' => round($duration / 60, 1),
+            ];
+        }
+
+        header('Content-Type: application/json');
+        return response()->json([
+            'success'        => true,
+            'mode'           => $mode,
+            'total_seconds'  => $totalSeconds,
+            'total_minutes'  => round($totalSeconds / 60, 1),
+            'total_hours'    => round($totalSeconds / 3600, 2),
+            'is_online_now'  => (bool) $sopir->is_online,
+            'last_online_at' => $sopir->last_online_at ?? null,
+            'detail'         => $detail,
+        ]);
+    }
+
+    /**
+     * Statistik ringkas untuk dashboard kurir.
+     *
+     * Request params:
+     * - no_hp : wajib
+     * - type  : optional (semua|pasca_order|live_order)
+     *
+     * Response periods:
+     * - today
+     * - month
+     * - total
+     */
+    public function getStatistikRingkas(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp' => 'required',
+            'type'  => 'nullable|in:semua,all,pasca_order,live_order',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors'  => $validator->errors(),
+            ], 422);
+        }
+
+        $konsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp)->first();
+        if (!$konsumen) {
+            return response()->json(['success' => false, 'message' => 'Kurir tidak ditemukan'], 404);
+        }
+
+        $sopir = DB::table('rb_sopir')->where('id_konsumen', $konsumen->id_konsumen)->first();
+        if (!$sopir) {
+            return response()->json(['success' => false, 'message' => 'Data sopir tidak ditemukan'], 404);
+        }
+
+        $sources = $this->resolveOrderSources($req->input('type', 'semua'));
+
+        $todayDate = now()->format('Y-m-d');
+        $monthStart = now()->startOfMonth()->format('Y-m-d');
+        $monthEnd = now()->endOfMonth()->format('Y-m-d');
+
+        $todayStats = $this->buildStatistikPeriod($sopir->id_sopir, $konsumen->id_konsumen, $sources, $todayDate, $todayDate);
+        $monthStats = $this->buildStatistikPeriod($sopir->id_sopir, $konsumen->id_konsumen, $sources, $monthStart, $monthEnd);
+        $totalStats = $this->buildStatistikPeriod($sopir->id_sopir, $konsumen->id_konsumen, $sources, null, null);
+
+        $mobileSummary = [
+            'pesananToday'               => $todayStats['orders_total'],
+            'pesananMonth'               => $monthStats['orders_total'],
+            'pesananAllDates'            => $totalStats['orders_total'],
+            'omsetToday'                 => $todayStats['omset_total'],
+            'omsetMonth'                 => $monthStats['omset_total'],
+            'omsetAllDates'              => $totalStats['omset_total'],
+            'pendapatanToday'            => $todayStats['pendapatan_total'],
+            'pendapatanMonth'            => $monthStats['pendapatan_total'],
+            'pendapatanAllDates'         => $totalStats['pendapatan_total'],
+            'komisiToday'                => $todayStats['komisi_total'],
+            'komisiMonth'                => $monthStats['komisi_total'],
+            'komisiAllDates'             => $totalStats['komisi_total'],
+            'pelangganBaruToday'         => $todayStats['pelanggan_baru'],
+            'pelangganBaruMonth'         => $monthStats['pelanggan_baru'],
+            'pelangganBaruAllDates'      => $totalStats['pelanggan_baru'],
+            'waktuOnlineMinutesToday'    => $todayStats['online_minutes'],
+            'waktuOnlineMinutesMonth'    => $monthStats['online_minutes'],
+            'waktuOnlineMinutesAllDates' => $totalStats['online_minutes'],
+        ];
+
+        return response()->json([
+            'success'  => true,
+            'message'  => 'Statistik ringkas berhasil diambil',
+            'filter'   => [
+                'type'    => $req->input('type', 'semua'),
+                'sources' => $sources,
+            ],
+            'today'    => $todayStats,
+            'month'    => $monthStats,
+            'total'    => $totalStats,
+            'data'     => $mobileSummary,
+            'summary'  => [
+                // snake_case untuk backward compatibility
+                    'pesanan_today'              => $todayStats['orders_total'],
+                    'pesanan_month'              => $monthStats['orders_total'],
+                    'pesanan_total'              => $totalStats['orders_total'],
+                    'omset_today'                => $todayStats['omset_total'],
+                    'omset_month'                => $monthStats['omset_total'],
+                    'omset_total'                => $totalStats['omset_total'],
+                    'pendapatan_today'           => $todayStats['pendapatan_total'],
+                    'pendapatan_month'           => $monthStats['pendapatan_total'],
+                    'pendapatan_total'           => $totalStats['pendapatan_total'],
+                    'komisi_today'               => $todayStats['komisi_total'],
+                    'komisi_month'               => $monthStats['komisi_total'],
+                    'komisi_total'               => $totalStats['komisi_total'],
+                    'pelanggan_today'            => $todayStats['pelanggan_baru'],
+                    'pelanggan_month'            => $monthStats['pelanggan_baru'],
+                    'pelanggan_total'            => $totalStats['pelanggan_baru'],
+                    'online_minutes_today'       => $todayStats['online_minutes'],
+                    'online_minutes_month'       => $monthStats['online_minutes'],
+                    'online_minutes_total'       => $totalStats['online_minutes'],
+            ],
+        ]);
+    }
+
+    public function exportStatistikExcel(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp' => 'required',
+            'type'  => 'nullable|in:semua,all,pasca_order,live_order',
+            'start_date' => 'nullable|date_format:Y-m-d',
+            'end_date' => 'nullable|date_format:Y-m-d|after_or_equal:start_date',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors'  => $validator->errors(),
+            ], 422);
+        }
+
+        $konsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp)->first();
+        if (!$konsumen) {
+            return response()->json(['success' => false, 'message' => 'Kurir tidak ditemukan'], 404);
+        }
+
+        $sopir = DB::table('rb_sopir')->where('id_konsumen', $konsumen->id_konsumen)->first();
+        if (!$sopir) {
+            return response()->json(['success' => false, 'message' => 'Data sopir tidak ditemukan'], 404);
+        }
+
+        $type = $req->input('type', 'semua');
+        $sources = $this->resolveOrderSources($type);
+
+        $startDate = $req->input('start_date', now()->startOfMonth()->format('Y-m-d'));
+        $endDate = $req->input('end_date', now()->format('Y-m-d'));
+        $rangeStats = $this->buildStatistikPeriod($sopir->id_sopir, $konsumen->id_konsumen, $sources, $startDate, $endDate);
+
+        $sheetRows = [
+            ['Periode', 'Pesanan', 'Omset', 'Fee', 'Pendapatan', 'Komisi', 'Pelanggan', 'Online Menit'],
+            ['Range ' . $startDate . ' s/d ' . $endDate, $rangeStats['orders_total'], $rangeStats['omset_total'], $rangeStats['fee_total'], $rangeStats['pendapatan_total'], $rangeStats['komisi_total'], $rangeStats['pelanggan_baru'], $rangeStats['online_minutes']],
+        ];
+
+        $exportTarget = $this->resolveStatistikExportTarget();
+        if (!$exportTarget) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Folder export tidak bisa diakses. Pastikan permission folder public/ atau storage/ sudah benar.',
+            ], 500);
+        }
+
+        $exportDir = $exportTarget['dir'];
+        $baseUrl = $exportTarget['url'];
+        $this->cleanupOldStatistikExports($exportDir, 7);
+
+        $fileName = 'statistik-kurir-' . $sopir->id_sopir . '-' . now()->format('YmdHis') . '.xlsx';
+        $filePath = $exportDir . DIRECTORY_SEPARATOR . $fileName;
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Statistik Kurir');
+        $sheet->fromArray($sheetRows, null, 'A1');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Export Excel berhasil',
+            'data' => [
+                'filename' => $fileName,
+                'url' => rtrim($baseUrl, '/') . '/' . $fileName,
+                'type' => $type,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'summary' => [
+                    'pesanan' => $rangeStats['orders_total'],
+                    'omset' => $rangeStats['omset_total'],
+                    'fee' => $rangeStats['fee_total'],
+                    'pendapatan' => $rangeStats['pendapatan_total'],
+                    'komisi' => $rangeStats['komisi_total'],
+                    'pelanggan' => $rangeStats['pelanggan_baru'],
+                    'online_minutes' => $rangeStats['online_minutes'],
+                ],
+            ],
+        ]);
+    }
+
+    public function exportStatistikPdf(Request $req)
+    {
+        $validator = \Validator::make($req->all(), [
+            'no_hp' => 'required',
+            'type'  => 'nullable|in:semua,all,pasca_order,live_order',
+            'start_date' => 'nullable|date_format:Y-m-d',
+            'end_date' => 'nullable|date_format:Y-m-d|after_or_equal:start_date',
+            'nama_kurir' => 'nullable|string|max:150',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors'  => $validator->errors(),
+            ], 422);
+        }
+
+        $konsumen = DB::table('rb_konsumen')->where('no_hp', $req->no_hp)->first();
+        if (!$konsumen) {
+            return response()->json(['success' => false, 'message' => 'Kurir tidak ditemukan'], 404);
+        }
+
+        $sopir = DB::table('rb_sopir')->where('id_konsumen', $konsumen->id_konsumen)->first();
+        if (!$sopir) {
+            return response()->json(['success' => false, 'message' => 'Data sopir tidak ditemukan'], 404);
+        }
+
+        $type = $req->input('type', 'semua');
+        $sources = $this->resolveOrderSources($type);
+        $namaKurir = trim((string)$req->input('nama_kurir', ''));
+        if ($namaKurir === '') {
+            $namaKurir = trim((string)($konsumen->nama_lengkap ?? ''));
+        }
+        if ($namaKurir === '') {
+            $namaKurir = '-';
+        }
+
+          $startDate = $req->input('start_date', now()->startOfMonth()->format('Y-m-d'));
+          $endDate = $req->input('end_date', now()->format('Y-m-d'));
+          $rangeStats = $this->buildStatistikPeriod($sopir->id_sopir, $konsumen->id_konsumen, $sources, $startDate, $endDate);
+
+          $logoDataUri = $this->getStatistikLogoDataUri();
+
+          $html = '<html><head><style>'
+              . 'body{font-family:DejaVu Sans, sans-serif;font-size:12px;color:#1f2937;}'
+              . '.header{margin-bottom:12px;border-bottom:1px solid #e5e7eb;padding-bottom:10px;}'
+              . '.logo{height:46px;margin-bottom:6px;}'
+              . '.title{font-size:18px;font-weight:700;margin:0 0 4px 0;}'
+              . '.meta{font-size:11px;color:#4b5563;line-height:1.5;}'
+              . '.card{border:1px solid #d1d5db;border-radius:6px;overflow:hidden;}'
+              . '.card table{width:100%;border-collapse:collapse;}'
+              . '.card th{background:#f3f4f6;text-align:left;padding:8px;border-bottom:1px solid #d1d5db;font-size:11px;}'
+              . '.card td{padding:8px;border-bottom:1px solid #e5e7eb;}'
+              . '.card tr:last-child td{border-bottom:none;}'
+              . '.label{width:42%;font-weight:600;color:#374151;}'
+              . '.value{width:58%;text-align:right;font-weight:700;color:#111827;}'
+              . '</style></head><body>'
+              . '<div class="header">'
+              . ($logoDataUri ? '<img class="logo" src="' . $logoDataUri . '" alt="Logo" />' : '')
+              . '<p class="title">Laporan Statistik Kurir</p>'
+              . '<div class="meta">'
+              . 'No HP: ' . e($req->no_hp) . '<br>'
+              . 'Nama Kurir: ' . e($namaKurir) . '<br>'
+              . 'Filter: ' . e($type) . '<br>'
+              . 'Range: ' . e($startDate) . ' s/d ' . e($endDate) . '<br>'
+              . 'Generated: ' . e(now()->format('Y-m-d H:i:s'))
+              . '</div></div>'
+              . '<div class="card"><table>'
+              . '<thead><tr><th colspan="2">Ringkasan Statistik (Sesuai Filter Range)</th></tr></thead>'
+              . '<tbody>'
+              . '<tr><td class="label">Pesanan</td><td class="value">' . e($rangeStats['orders_total']) . '</td></tr>'
+              . '<tr><td class="label">Omset</td><td class="value">Rp ' . e(number_format((float)$rangeStats['omset_total'], 0, ',', '.')) . '</td></tr>'
+              . '<tr><td class="label">Fee</td><td class="value">Rp ' . e(number_format((float)$rangeStats['fee_total'], 0, ',', '.')) . '</td></tr>'
+              . '<tr><td class="label">Pendapatan</td><td class="value">Rp ' . e(number_format((float)$rangeStats['pendapatan_total'], 0, ',', '.')) . '</td></tr>'
+              . '<tr><td class="label">Komisi</td><td class="value">Rp ' . e(number_format((float)$rangeStats['komisi_total'], 0, ',', '.')) . '</td></tr>'
+              . '<tr><td class="label">Pelanggan</td><td class="value">' . e($rangeStats['pelanggan_baru']) . '</td></tr>'
+              . '<tr><td class="label">Waktu Online</td><td class="value">' . e($rangeStats['online_minutes']) . ' menit</td></tr>'
+              . '</tbody></table></div>'
+              . '</body></html>';
+
+        $exportTarget = $this->resolveStatistikExportTarget();
+        if (!$exportTarget) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Folder export tidak bisa diakses. Pastikan permission folder public/ atau storage/ sudah benar.',
+            ], 500);
+        }
+
+        $exportDir = $exportTarget['dir'];
+        $baseUrl = $exportTarget['url'];
+        $this->cleanupOldStatistikExports($exportDir, 7);
+
+        $fileName = 'statistik-kurir-' . $sopir->id_sopir . '-' . now()->format('YmdHis') . '.pdf';
+        $filePath = $exportDir . DIRECTORY_SEPARATOR . $fileName;
+
+        $pdf = Pdf::loadHTML($html)->setPaper('a4', 'portrait');
+        $pdf->save($filePath);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Export PDF berhasil',
+            'data' => [
+                'filename' => $fileName,
+                'url' => rtrim($baseUrl, '/') . '/' . $fileName,
+                'type' => $type,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'summary' => [
+                    'pesanan' => $rangeStats['orders_total'],
+                    'omset' => $rangeStats['omset_total'],
+                    'fee' => $rangeStats['fee_total'],
+                    'pendapatan' => $rangeStats['pendapatan_total'],
+                    'komisi' => $rangeStats['komisi_total'],
+                    'pelanggan' => $rangeStats['pelanggan_baru'],
+                    'online_minutes' => $rangeStats['online_minutes'],
+                ],
+            ],
+        ]);
+    }
+
+    private function resolveStatistikExportTarget()
+    {
+        $targets = [
+            [
+                'dir' => public_path('exports/kurir'),
+                'url' => url('exports/kurir'),
+            ],
+            [
+                'dir' => storage_path('app/public/exports/kurir'),
+                'url' => url('storage/exports/kurir'),
+            ],
+        ];
+
+        foreach ($targets as $target) {
+            $dir = $target['dir'];
+
+            if (!is_dir($dir)) {
+                if (!@mkdir($dir, 0775, true) && !is_dir($dir)) {
+                    continue;
+                }
+            }
+
+            if (is_writable($dir)) {
+                return $target;
+            }
+        }
+
+        return null;
+    }
+
+    private function getStatistikLogoDataUri()
+    {
+        $logoPath = public_path('uploads/images/logo.png');
+        if (!is_file($logoPath)) {
+            return null;
+        }
+
+        $content = @file_get_contents($logoPath);
+        if ($content === false) {
+            return null;
+        }
+
+        return 'data:image/png;base64,' . base64_encode($content);
+    }
+
+    private function resolveOrderSources($type)
+    {
+        if ($type === 'pasca_order') {
+            return ['MANUAL_KURIR'];
+        }
+
+        if ($type === 'live_order') {
+            return ['LIVE_ORDER'];
+        }
+
+        return ['LIVE_ORDER', 'MANUAL_KURIR'];
+    }
+
+    private function cleanupOldStatistikExports($exportDir, $maxAgeDays = 7)
+    {
+        if (!is_dir($exportDir)) {
+            return;
+        }
+
+        $cutoff = time() - ((int)$maxAgeDays * 86400);
+        $patterns = [
+            $exportDir . DIRECTORY_SEPARATOR . 'statistik-kurir-*.xlsx',
+            $exportDir . DIRECTORY_SEPARATOR . 'statistik-kurir-*.pdf',
+        ];
+
+        foreach ($patterns as $pattern) {
+            foreach (glob($pattern) ?: [] as $filePath) {
+                if (!is_file($filePath)) {
+                    continue;
+                }
+
+                $fileMTime = @filemtime($filePath);
+                if ($fileMTime !== false && $fileMTime < $cutoff) {
+                    @unlink($filePath);
+                }
+            }
+        }
+    }
+
+    private function applyDateRangeToQuery($query, $column, $startDate = null, $endDate = null)
+    {
+        if ($startDate && $endDate) {
+            $query->whereBetween(DB::raw("DATE({$column})"), [$startDate, $endDate]);
+        }
+
+        return $query;
+    }
+
+    private function buildStatistikPeriod($idSopir, $idKonsumen, $sources, $startDate = null, $endDate = null)
+    {
+        // --- Pesanan & Omset (tarif bruto) ---
+        $ordersQuery = DB::table('kurir_order as a')
+            ->where('a.id_sopir', $idSopir)
+            ->where('a.status', 'FINISH')
+            ->whereIn('a.source', $sources);
+
+        $this->applyDateRangeToQuery($ordersQuery, 'a.tanggal_order', $startDate, $endDate);
+
+        $ordersCount = (clone $ordersQuery)->count();
+        $omsetTotal  = (float)((clone $ordersQuery)->sum('a.tarif') ?? 0);
+
+        // --- Fee / Potongan Admin (debit rb_wallet_users) ---
+        $feeQuery = DB::table('rb_wallet_users as w')
+            ->join('kurir_order as ko', 'ko.id', '=', 'w.source_id')
+            ->where('ko.id_sopir', $idSopir)
+            ->where('ko.status', 'FINISH')
+            ->whereIn('ko.source', $sources)
+            ->where('w.source', 'KURIR')
+            ->where('w.trx_type', 'debit');
+
+        $this->applyDateRangeToQuery($feeQuery, 'ko.tanggal_order', $startDate, $endDate);
+        $feeTotal = (float)($feeQuery->sum('w.amount') ?? 0);
+
+        $pendapatanTotal = $omsetTotal - $feeTotal;
+
+        // --- Komisi (credit), tanggal dari created_at ---
+        $komisiQuery = DB::table('rb_wallet_users as w')
+            ->where('w.id_konsumen', $idKonsumen)
+            ->where('w.source', 'KURIR')
+            ->where('w.trx_type', 'credit');
+
+        $this->applyDateRangeToQuery($komisiQuery, 'w.created_at', $startDate, $endDate);
+        $komisiTotal = (float)($komisiQuery->sum('w.amount') ?? 0);
+
+        // --- Pelanggan: referral_id = id_konsumen kurir, filter tanggal_daftar ---
+        $pelangganQuery = DB::table('rb_konsumen')
+            ->where('referral_id', $idKonsumen);
+
+        $this->applyDateRangeToQuery($pelangganQuery, 'tanggal_daftar', $startDate, $endDate);
+        $pelangganBaru = (int)$pelangganQuery->count();
+
+        $onlineSeconds = $this->calculateOnlineSeconds($idSopir, $startDate, $endDate);
+
+        return [
+            'orders_total'      => (int)$ordersCount,
+            'omset_total'       => round($omsetTotal, 2),
+            'fee_total'         => round($feeTotal, 2),
+            'pendapatan_total'  => round($pendapatanTotal, 2),
+            'komisi_total'      => round($komisiTotal, 2),
+            'pelanggan_baru'    => $pelangganBaru,
+            'online_seconds'    => (int)$onlineSeconds,
+            'online_minutes'    => round($onlineSeconds / 60, 1),
+            'online_hours'      => round($onlineSeconds / 3600, 2),
+            'period_start'      => $startDate,
+            'period_end'        => $endDate,
+        ];
+    }
+
+    private function calculateOnlineSeconds($idSopir, $startDate = null, $endDate = null)
+    {
+        $startAt = $startDate ? ($startDate . ' 00:00:00') : null;
+        $endAt = $endDate ? ($endDate . ' 23:59:59') : now()->format('Y-m-d H:i:s');
+
+        if ($endAt > now()->format('Y-m-d H:i:s')) {
+            $endAt = now()->format('Y-m-d H:i:s');
+        }
+
+        $logsQuery = DB::table('rb_sopir_online_log')
+            ->where('id_sopir', $idSopir)
+            ->orderBy('logged_at', 'asc');
+
+        if ($startAt && $endAt) {
+            $logsQuery->whereBetween('logged_at', [$startAt, $endAt]);
+        }
+
+        $logs = $logsQuery->get(['status', 'logged_at']);
+
+        $pendingOnline = null;
+
+        if ($startAt) {
+            $lastBeforeStart = DB::table('rb_sopir_online_log')
+                ->where('id_sopir', $idSopir)
+                ->where('logged_at', '<', $startAt)
+                ->orderBy('logged_at', 'desc')
+                ->first(['status', 'logged_at']);
+
+            if ($lastBeforeStart && $lastBeforeStart->status === 'online') {
+                $pendingOnline = $startAt;
+            }
+        }
+
+        $totalSeconds = 0;
+
+        foreach ($logs as $log) {
+            if ($log->status === 'online') {
+                $pendingOnline = $log->logged_at;
+            } elseif ($log->status === 'offline' && $pendingOnline !== null) {
+                $start = strtotime($pendingOnline);
+                $end = strtotime($log->logged_at);
+                $totalSeconds += max(0, ($end - $start));
+                $pendingOnline = null;
+            }
+        }
+
+        if ($pendingOnline !== null) {
+            $start = strtotime($pendingOnline);
+            $end = strtotime($endAt);
+            $totalSeconds += max(0, ($end - $start));
+        }
+
+        return (int)$totalSeconds;
     }
 
 }

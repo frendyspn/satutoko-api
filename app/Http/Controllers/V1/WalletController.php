@@ -69,8 +69,12 @@ class WalletController extends Controller
         $endDate = $req->end_date ?? date('Y-m-t');
 
         $query1 = DB::table('rb_wallet_users')
-            ->select('rb_wallet_users.id', 'rb_wallet_users.trx_type', 'rb_wallet_users.amount', 'rb_wallet_users.created_at', 'rb_wallet_users.note', 'rb_konsumen.no_hp', DB::raw("'success' as status"), DB::raw("'' as bukti_topup"), 'rb_wallet_users.source_id')
-            ->join('rb_konsumen', 'rb_wallet_users.id_konsumen', '=', 'rb_konsumen.id_konsumen');
+            ->select('rb_wallet_users.id', 'rb_wallet_users.trx_type', 'rb_wallet_users.amount', 'rb_wallet_users.created_at', 'rb_wallet_users.note', 'rb_konsumen.no_hp', DB::raw("'success' as status"), DB::raw("'' as bukti_topup"), 'rb_wallet_users.source_id', 'konsumen_order.nama_lengkap as nama_konsumen_order', 'sopir_konsumen.nama_lengkap as nama_sopir')
+            ->join('rb_konsumen', 'rb_wallet_users.id_konsumen', '=', 'rb_konsumen.id_konsumen')
+            ->leftJoin('kurir_order', 'kurir_order.id', '=', 'rb_wallet_users.source_id')
+            ->leftJoin('rb_konsumen as konsumen_order', 'konsumen_order.id_konsumen', '=', 'kurir_order.id_pemesan')
+            ->leftJoin('rb_sopir', 'rb_sopir.id_sopir', '=', 'kurir_order.id_sopir')
+            ->leftJoin('rb_konsumen as sopir_konsumen', 'sopir_konsumen.id_konsumen', '=', 'rb_sopir.id_konsumen');
 
 
         if (!empty($req->no_hp)) {
@@ -80,7 +84,7 @@ class WalletController extends Controller
         $query1->whereBetween(DB::raw('DATE(rb_wallet_users.created_at)'), [$startDate, $endDate]);
 
         $query2 = DB::table('rb_wallet_requests')
-            ->select('rb_wallet_requests.id', 'rb_wallet_requests.req_type as trx_type', 'rb_wallet_requests.amount', 'rb_wallet_requests.created_at', 'rb_wallet_requests.req_type as note', 'rb_konsumen.no_hp', 'rb_wallet_requests.status', 'rb_wallet_requests.proof_image as bukti_topup', DB::raw("'' as source_id"))
+            ->select('rb_wallet_requests.id', 'rb_wallet_requests.req_type as trx_type', 'rb_wallet_requests.amount', 'rb_wallet_requests.created_at', 'rb_wallet_requests.req_type as note', 'rb_konsumen.no_hp', 'rb_wallet_requests.status', 'rb_wallet_requests.proof_image as bukti_topup', DB::raw(" concat('req-', rb_wallet_requests.id) as source_id"), DB::raw("'' as nama_konsumen_order"), DB::raw("'' as nama_sopir"))
             ->join('rb_konsumen', 'rb_wallet_requests.id_konsumen', '=', 'rb_konsumen.id_konsumen')
             ->where('rb_wallet_requests.status', 'pending');
 
@@ -125,7 +129,9 @@ class WalletController extends Controller
                 'time' => date('H:i', $created),
                 'status' => $status,
                 'note' => (string)($r->note ?? ''),
-                'source_id' => $r->source_id
+                'source_id' => $r->source_id,
+                'nama_konsumen_order' => (string)($r->nama_konsumen_order ?? ''),
+                'nama_kurir' => (string)($r->nama_sopir ?? ''),
             ];
         }
 

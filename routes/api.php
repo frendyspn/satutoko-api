@@ -25,7 +25,7 @@ use App\Http\Controllers\V1\FlipController;
 |
 */
 
-Route::get('/testNotif', [Controller::class, 'testNotif']);
+Route::get('/testNotif/{id}', [Controller::class, 'testNotif']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -103,6 +103,7 @@ Route::prefix('kurir')->group(function () {
         Route::post('/getBalance', [KurirController::class, 'getBalance']);
         Route::post('/orders/daily', [KurirController::class, 'getOrdersDaily']);
         Route::post('/orders/monthly', [KurirController::class, 'getOrdersMonthly']);
+        Route::post('/orders/custom', [KurirController::class, 'getOrdersCustom']);
 
         Route::post('/orders/jenis/daily', [KurirController::class, 'getJenisOrderDaily']);
         Route::post('/orders/jenis/monthly', [KurirController::class, 'getJenisOrderMonthly']);
@@ -116,7 +117,7 @@ Route::prefix('kurir')->group(function () {
         Route::post('/list-favorite-pelanggan', [KurirController::class, 'getPelangganFavorite']);
 
         Route::post('/save-transaksi-manual', [KurirController::class, 'saveTransaksi']);
-        Route::post('/approve-transaksi-manual', [KurirController::class, 'approveTransaksi']);
+        Route::post('/approve-transaksi-manual', [KurirController::class, 'saveTransaksi']);
 
         Route::post('/update-konsumen', [KurirController::class, 'updateKonsumen']);
         Route::post('/update-konsumen-simple', [KurirController::class, 'updateKonsumenSimple']);
@@ -126,6 +127,9 @@ Route::prefix('kurir')->group(function () {
 
         Route::post('/add-pelanggan', [KurirController::class, 'addDownline']);
         Route::post('/get-pelanggan', [KurirController::class, 'getDownline']);
+        Route::post('/get-user-city', [KurirController::class, 'getUserCity']);
+        Route::post('/bulk-add-konsumen', [KurirController::class, 'bulkAddDownline']);
+        Route::post('/search-konsumen', [KurirController::class, 'searchKonsumen']);
 
         Route::post('/check_user_by_phone', [KurirController::class, 'checkUserByPhone']);
         Route::post('/create_transfer_request', [KurirController::class, 'createTransferRequest']);
@@ -156,6 +160,12 @@ Route::prefix('kurir')->group(function () {
         Route::post('/admin-kurir', [KurirController::class, 'getPotonganAdmin']);
 
         Route::post('/notifications', [KurirController::class, 'getNotifications']);
+
+        Route::post('/update-status-online', [KurirController::class, 'updateStatusOnline']);
+        Route::post('/rekap-online', [KurirController::class, 'getRekapOnline']);
+        Route::post('/statistik-ringkas', [KurirController::class, 'getStatistikRingkas']);
+        Route::post('/statistik-export-excel', [KurirController::class, 'exportStatistikExcel']);
+        Route::post('/statistik-export-pdf', [KurirController::class, 'exportStatistikPdf']);
     });
 
 });
